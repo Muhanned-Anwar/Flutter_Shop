@@ -2,6 +2,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_assets.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
+import 'package:avatar_course2_5_shop/core/routes.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constants.dart';
 
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(
         seconds: Constants.splashTime,
       ),
-      () {},
+      () => Navigator.pushReplacementNamed(context, Routes.outBoardingScreen),
     );
   }
 
@@ -52,7 +53,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   const SizedBox(height: ManagerHeight.h12),
                   const Text(
                     ManagerStrings.appName,
-                    style: TextStyle(fontSize: ManagerFontSizes.s20),
+                    style: TextStyle(
+                      fontSize: ManagerFontSizes.s20,
+                    ),
                   )
                 ],
               ),
