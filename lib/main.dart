@@ -1,3 +1,5 @@
+import 'package:avatar_course2_5_shop/core/routes.dart';
+import 'package:avatar_course2_5_shop/features/splash/presentation/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false
+      theme: ThemeData(
+        useMaterial3: true
+      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: Routes.splashScreen,
+      routes: {
+        Routes.splashScreen: (context) => const SplashScreen(),
+      },
     );
   }
 }
