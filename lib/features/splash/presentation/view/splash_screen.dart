@@ -1,3 +1,7 @@
+import 'package:avatar_course2_5_shop/core/resources/manager_assets.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constants.dart';
 
@@ -25,7 +29,36 @@ class _SplashScreenState extends State<SplashScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: Container(),
+        body: Stack(
+          children: [
+            Image.asset(
+              ManagerAssets.splash1,
+              filterQuality: FilterQuality.high,
+              fit: BoxFit.cover,
+            ),
+            Align(
+              child: Image.asset(
+                ManagerAssets.splash2,
+                filterQuality: FilterQuality.high,
+              ),
+            ),
+            Align(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    ManagerAssets.splash3,
+                  ),
+                  const SizedBox(height: ManagerHeight.h12),
+                  const Text(
+                    ManagerStrings.appName,
+                    style: TextStyle(fontSize: ManagerFontSizes.s20),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
