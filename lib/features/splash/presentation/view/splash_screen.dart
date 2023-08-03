@@ -21,7 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(
         seconds: Constants.splashTime,
       ),
-      () => Navigator.pushReplacementNamed(context, Routes.outBoardingScreen),
+      () => Navigator.pushReplacementNamed(
+        context,
+        Routes.outBoardingScreen,
+      ),
     );
   }
 
