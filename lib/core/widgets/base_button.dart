@@ -1,3 +1,4 @@
+import 'package:avatar_course2_5_shop/core/constants.dart';
 import 'package:flutter/material.dart';
 import '../resources/manager_colors.dart';
 import '../resources/manager_font_sizes.dart';
@@ -24,12 +25,12 @@ class BaseButton extends StatelessWidget {
   BaseButton({
     super.key,
     this.title = ManagerStrings.start,
-    this.isVisibleIcon = false,
+    this.isVisibleIcon = Constants.baseButtonVisibleIcon,
     this.width = ManagerWidth.w64,
     this.height = ManagerHeight.h50,
     this.bgColor = ManagerColors.primaryColor,
     this.textStyle,
-    this.elevation = 2,
+    this.elevation = Constants.baseButtonElevation,
     required this.onPressed,
   });
 
@@ -49,14 +50,14 @@ class BaseButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           const Spacer(
-            flex: 5,
+            flex: Constants.baseButtonFirstSpacerFlex,
           ),
           Text(
             title,
             style: textStyle,
           ),
           const Spacer(
-            flex: 4,
+            flex: Constants.baseButtonSecondSpacerFlex,
           ),
           Visibility(
             visible: isVisibleIcon,
@@ -64,7 +65,7 @@ class BaseButton extends StatelessWidget {
               Icons.arrow_forward,
               color: ManagerColors.white,
             ),
-          )
+          ),
         ],
       ),
     );

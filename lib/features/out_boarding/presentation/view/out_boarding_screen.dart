@@ -39,12 +39,12 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Visibility(
-          visible: _currentPageIndex != 0,
+          visible: isNotFirstPage(),
           child: IconButton(
             onPressed: () {
               _pageController.previousPage(
                 duration: const Duration(
-                  milliseconds: 300,
+                  milliseconds: Constants.pageViewSliderDuration,
                 ),
                 curve: Curves.fastLinearToSlowEaseIn,
               );
@@ -60,25 +60,40 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
           Container(
             width: ManagerWidth.w100,
             height: ManagerHeight.h40,
-            margin: EdgeInsetsDirectional.only(
+            margin: const EdgeInsetsDirectional.only(
               end: ManagerWidth.w12,
             ),
             child: Visibility(
-              visible: _currentPageIndex != 3,
-              child: BaseButton(
+              visible: isNotLastPage(),
+              replacement: BaseButton(
                 width: ManagerWidth.w10,
                 height: ManagerHeight.h10,
-                title: 'Next',
+                title: ManagerStrings.start,
                 textStyle: TextStyle(
                   color: ManagerColors.black,
                   fontSize: ManagerFontSizes.s16,
                 ),
                 isVisibleIcon: false,
                 bgColor: ManagerColors.transparent,
-                elevation: 0,
+                elevation: Constants.elevationZero,
+                onPressed: () {},
+              ),
+              child: BaseButton(
+                width: ManagerWidth.w10,
+                height: ManagerHeight.h10,
+                title: ManagerStrings.next,
+                textStyle: TextStyle(
+                  color: ManagerColors.black,
+                  fontSize: ManagerFontSizes.s16,
+                ),
+                isVisibleIcon: false,
+                bgColor: ManagerColors.transparent,
+                elevation: Constants.elevationZero,
                 onPressed: () {
                   _pageController.nextPage(
-                    duration: const Duration(milliseconds: 300),
+                    duration: const Duration(
+                      milliseconds: Constants.pageViewSliderDuration,
+                    ),
                     curve: Curves.easeIn,
                   );
                 },
@@ -134,36 +149,28 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 progressIndicator(
-                  color: _currentPageIndex == 0
+                  color: isFirstPage()
                       ? ManagerColors.black
                       : ManagerColors.progressIndicatorColor,
-                  width: _currentPageIndex == 0
-                      ? ManagerWidth.w20
-                      : ManagerWidth.w8,
+                  width: isFirstPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
                 progressIndicator(
-                  color: _currentPageIndex == 1
+                  color: isSecondPage()
                       ? ManagerColors.black
                       : ManagerColors.progressIndicatorColor,
-                  width: _currentPageIndex == 1
-                      ? ManagerWidth.w20
-                      : ManagerWidth.w8,
+                  width: isSecondPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
                 progressIndicator(
-                  color: _currentPageIndex == 2
+                  color: isThirdPage()
                       ? ManagerColors.black
                       : ManagerColors.progressIndicatorColor,
-                  width: _currentPageIndex == 2
-                      ? ManagerWidth.w20
-                      : ManagerWidth.w8,
+                  width: isThirdPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
                 progressIndicator(
-                  color: _currentPageIndex == 3
+                  color: isLastPage()
                       ? ManagerColors.black
                       : ManagerColors.progressIndicatorColor,
-                  width: _currentPageIndex == 3
-                      ? ManagerWidth.w20
-                      : ManagerWidth.w8,
+                  width: isLastPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
               ],
             ),
@@ -186,5 +193,29 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
         ),
       ),
     );
+  }
+
+  bool isNotFirstPage() {
+    return _currentPageIndex != 0;
+  }
+
+  bool isFirstPage() {
+    return _currentPageIndex == 0;
+  }
+
+  bool isSecondPage() {
+    return _currentPageIndex == 1;
+  }
+
+  bool isThirdPage() {
+    return _currentPageIndex == 2;
+  }
+
+  bool isLastPage() {
+    return _currentPageIndex == 3;
+  }
+
+  bool isNotLastPage() {
+    return _currentPageIndex != 3;
   }
 }
