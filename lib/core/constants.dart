@@ -7,4 +7,5 @@ class Constants {
   static const int baseButtonSecondSpacerFlex = 4;
   static const int pageViewSliderDuration = 300;
   static const bool baseButtonVisibleIcon = false;
+  static const int outBoardingLastPage = 3;
 }
