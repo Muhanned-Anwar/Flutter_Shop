@@ -5,6 +5,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_weight.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
+import 'package:avatar_course2_5_shop/core/routes.dart';
 import 'package:avatar_course2_5_shop/core/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +73,9 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                 Column(
                   children: [
                     BaseButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.registerView);
+                      },
                       title: 'Sign Up',
                       textStyle: TextStyle(
                         color: ManagerColors.white,
@@ -82,7 +85,9 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                     ),
                     const SizedBox(height: ManagerHeight.h24),
                     BaseButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.loginView);
+                      },
                       title: 'Sign In',
                       textStyle: const TextStyle(
                         color: ManagerColors.primaryColor,
