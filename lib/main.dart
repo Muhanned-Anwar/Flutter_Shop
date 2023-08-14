@@ -1,4 +1,5 @@
 import 'package:avatar_course2_5_shop/core/routes.dart';
+import 'package:avatar_course2_5_shop/features/auth/presentation/view/authentication_view.dart';
 import 'package:avatar_course2_5_shop/features/out_boarding/presentation/view/out_boarding_screen.dart';
 import 'package:avatar_course2_5_shop/features/splash/presentation/view/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Routes.splashScreen: (context) => const SplashScreen(),
         Routes.outBoardingScreen: (context) => const OutBoardingScreen(),
+        Routes.authenticationView: (context) => const AuthenticationView(),
       },
     );
   }
