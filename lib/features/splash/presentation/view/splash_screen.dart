@@ -4,6 +4,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../core/constants.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,10 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(
         seconds: Constants.splashTime,
       ),
-      () => Navigator.pushReplacementNamed(
-        context,
-        Routes.outBoardingScreen,
-      ),
+      () => Get.offAllNamed(Routes.outBoardingScreen),
     );
   }
 

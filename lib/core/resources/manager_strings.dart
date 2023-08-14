@@ -14,4 +14,13 @@ class ManagerStrings {
       'Quia sed consequatur rem quia molestias nulla quia. Eos optio soluta asperiores in similique. Eius tenetur blanditiis ad cumque aspernatur earum nihil qui. Eveniet doloribus cum eum rerum facilis aut. Et quos dolores eos sed ex voluptatem dolorem est ut. Alias voluptatum dolorem occaecati cum atque in dolorum sequi qui.';
   static const String start = 'Start';
   static const String next = 'Next';
+  static const String skip = 'Skip';
+  static const String welcomeTo = 'Welcome to';
+  static const String signIn = 'Sign in';
+  static const String signUp = 'Sign Up';
+  static const String rememberMe = 'Remember me';
+  static const String forgotYourPassword = 'Forgot your password?';
+  static const String donNotHaveAnAccount = 'Don\'t have an account?';
+  static const String alreadyHaveAccount  = 'Already have account?';
+  static const String or = 'Or';
 }
