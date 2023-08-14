@@ -6,6 +6,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_weight.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
+import 'package:avatar_course2_5_shop/core/routes.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/base_button.dart';
 import '../widget/out_boarding_content.dart';
@@ -150,25 +151,25 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
               children: [
                 progressIndicator(
                   color: isFirstPage()
-                      ? ManagerColors.black
+                      ? ManagerColors.gray
                       : ManagerColors.progressIndicatorColor,
                   width: isFirstPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
                 progressIndicator(
                   color: isSecondPage()
-                      ? ManagerColors.black
+                      ? ManagerColors.gray
                       : ManagerColors.progressIndicatorColor,
                   width: isSecondPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
                 progressIndicator(
                   color: isThirdPage()
-                      ? ManagerColors.black
+                      ? ManagerColors.gray
                       : ManagerColors.progressIndicatorColor,
                   width: isThirdPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
                 progressIndicator(
                   color: isLastPage()
-                      ? ManagerColors.black
+                      ? ManagerColors.gray
                       : ManagerColors.progressIndicatorColor,
                   width: isLastPage() ? ManagerWidth.w20 : ManagerWidth.w8,
                 ),
@@ -179,14 +180,36 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
               padding: const EdgeInsets.symmetric(
                 horizontal: ManagerWidth.w40,
               ),
-              child: BaseButton(
-                isVisibleIcon: true,
-                textStyle: TextStyle(
-                  fontSize: ManagerFontSizes.s16,
-                  fontWeight: ManagerFontWeight.regular,
-                  color: ManagerColors.white,
+              child: Visibility(
+                visible: isLastPage(),
+                replacement: BaseButton(
+                  isVisibleIcon: true,
+                  textStyle: TextStyle(
+                    fontSize: ManagerFontSizes.s16,
+                    fontWeight: ManagerFontWeight.regular,
+                    color: ManagerColors.white,
+                  ),
+                  onPressed: () {
+                    _pageController.animateToPage(
+                      Constants.outBoardingLastPage,
+                      duration: const Duration(milliseconds: 100),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                    );
+                  },
+                  title: ManagerStrings.skip,
                 ),
-                onPressed: () {},
+                child: BaseButton(
+                  isVisibleIcon: true,
+                  textStyle: TextStyle(
+                    fontSize: ManagerFontSizes.s16,
+                    fontWeight: ManagerFontWeight.regular,
+                    color: ManagerColors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, Routes.authenticationView);
+                  },
+                ),
               ),
             ),
           ],
@@ -212,10 +235,10 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
   }
 
   bool isLastPage() {
-    return _currentPageIndex == 3;
+    return _currentPageIndex == Constants.outBoardingLastPage;
   }
 
   bool isNotLastPage() {
-    return _currentPageIndex != 3;
+    return _currentPageIndex != Constants.outBoardingLastPage;
   }
 }
