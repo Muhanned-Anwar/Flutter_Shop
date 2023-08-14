@@ -6,6 +6,7 @@ class ManagerHeight {
   static const double h10 = 10;
   static const double h12 = 12;
   static const double h14 = 14;
+  static const double h16 = 16;
   static const double h24 = 24;
   static const double h30 = 30;
   static const double h34 = 34;
