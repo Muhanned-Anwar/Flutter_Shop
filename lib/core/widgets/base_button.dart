@@ -8,6 +8,7 @@ import '../resources/manager_strings.dart';
 import '../resources/manager_width.dart';
 
 class BaseButton extends StatelessWidget {
+  final int? spacerFlex;
   final String title;
   final bool isVisibleIcon;
   final double width;
@@ -31,6 +32,7 @@ class BaseButton extends StatelessWidget {
     this.bgColor = ManagerColors.primaryColor,
     this.textStyle,
     this.elevation = Constants.baseButtonElevation,
+    this.spacerFlex,
     required this.onPressed,
   });
 
@@ -49,15 +51,15 @@ class BaseButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Spacer(
-            flex: Constants.baseButtonFirstSpacerFlex,
+          Spacer(
+            flex: spacerFlex ?? Constants.baseButtonFirstSpacerFlex,
           ),
           Text(
             title,
             style: textStyle,
           ),
-          const Spacer(
-            flex: Constants.baseButtonSecondSpacerFlex,
+          Spacer(
+            flex: spacerFlex ?? Constants.baseButtonSecondSpacerFlex,
           ),
           Visibility(
             visible: isVisibleIcon,
