@@ -16,4 +16,11 @@ class ManagerStrings {
   static const String next = 'Next';
   static const String skip = 'Skip';
   static const String welcomeTo = 'Welcome to';
+  static const String signIn = 'Sign in';
+  static const String signUp = 'Sign Up';
+  static const String rememberMe = 'Remember me';
+  static const String forgotYourPassword = 'Forgot your password?';
+  static const String donNotHaveAnAccount = 'Don\'t have an account?';
+  static const String alreadyHaveAccount  = 'Already have account?';
+  static const String or = 'Or';
 }
