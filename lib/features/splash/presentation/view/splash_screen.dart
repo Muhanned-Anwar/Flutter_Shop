@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(
         seconds: Constants.splashTime,
       ),
-      () => Navigator.pushNamed(context, 'routeName'),
+      () => Get.offAllNamed(Routes.outBoardingScreen),
     );
   }
 
