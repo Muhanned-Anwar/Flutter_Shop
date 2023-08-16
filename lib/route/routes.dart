@@ -38,10 +38,12 @@ class RouteGenerator {
 
   static Route<dynamic> unDefineRoute() {
     return MaterialPageRoute(
-        builder: (_) => const Scaffold(
-              body: Center(
-                child: Text(ManagerStrings.notFoundRoute),
-              ),
-            ));
+      builder: (_) => Scaffold(
+        appBar: AppBar(),
+        body: const Center(
+          child: Text(ManagerStrings.notFoundRoute),
+        ),
+      ),
+    );
   }
 }

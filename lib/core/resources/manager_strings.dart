@@ -23,4 +23,5 @@ class ManagerStrings {
   static const String donNotHaveAnAccount = 'Don\'t have an account?';
   static const String alreadyHaveAccount  = 'Already have account?';
   static const String or = 'Or';
+  static const String notFoundRoute = 'Not Found Route';
 }
