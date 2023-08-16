@@ -6,6 +6,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_weight.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
+import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/base_button.dart';
 import '../../../../route/routes.dart';
@@ -22,6 +23,7 @@ class OutBoardingScreen extends StatefulWidget {
 class _OutBoardingScreenState extends State<OutBoardingScreen> {
   late PageController _pageController;
   int _currentPageIndex = 0;
+  final AppSettingsSharedPreferences _appSettingsSharedPreferences = AppSettingsSharedPreferences();
 
   @override
   void initState() {
@@ -78,6 +80,7 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                 bgColor: ManagerColors.transparent,
                 elevation: Constants.elevationZero,
                 onPressed: () {
+                  _appSettingsSharedPreferences.saveViewedOutBoarding();
                   Navigator.pushReplacementNamed(
                       context, Routes.authenticationView);
                 },
@@ -209,6 +212,7 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                     color: ManagerColors.white,
                   ),
                   onPressed: () {
+                    _appSettingsSharedPreferences.saveViewedOutBoarding();
                     Navigator.pushReplacementNamed(
                         context, Routes.authenticationView);
                   },

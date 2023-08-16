@@ -9,3 +9,7 @@ class Constants {
   static const bool baseButtonVisibleIcon = false;
   static const int outBoardingLastPage = 3;
 }
+
+class KeyConstants {
+  static const String outBoardingViewedKey = 'out_boarding_viewed';
+}
