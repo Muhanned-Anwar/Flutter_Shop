@@ -2,10 +2,10 @@ import 'package:avatar_course2_5_shop/core/resources/manager_assets.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
-import 'package:avatar_course2_5_shop/core/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constants.dart';
+import '../../../../route/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(
         seconds: Constants.splashTime,
       ),
-      () => Get.offAllNamed(Routes.outBoardingScreen),
+      () => Navigator.pushNamed(context, 'routeName'),
     );
   }
 

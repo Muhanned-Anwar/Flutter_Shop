@@ -6,9 +6,9 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_weight.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
-import 'package:avatar_course2_5_shop/core/routes.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/base_button.dart';
+import '../../../../route/routes.dart';
 import '../widget/out_boarding_content.dart';
 import '../widget/progress_indicator.dart';
 
@@ -77,7 +77,10 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                 isVisibleIcon: false,
                 bgColor: ManagerColors.transparent,
                 elevation: Constants.elevationZero,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(
+                      context, Routes.authenticationView);
+                },
               ),
               child: BaseButton(
                 width: ManagerWidth.w10,

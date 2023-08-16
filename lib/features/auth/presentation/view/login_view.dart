@@ -1,14 +1,13 @@
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/resources/manager_assets.dart';
 import '../../../../core/resources/manager_font_sizes.dart';
 import '../../../../core/resources/manager_font_weight.dart';
 import '../../../../core/resources/manager_height.dart';
 import '../../../../core/resources/manager_strings.dart';
 import '../../../../core/resources/manager_width.dart';
-import '../../../../core/routes.dart';
 import '../../../../core/widgets/base_button.dart';
+import '../../../../route/routes.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -171,6 +170,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               BaseButton(
                 onPressed: () {
+                  int a = 1 + 5;
                   Navigator.pushNamed(context, Routes.homeView);
                 },
                 title: 'Login',
