@@ -1,8 +1,10 @@
 import 'package:avatar_course2_5_shop/route/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'config/dependancy_injection.dart';
 
-void main() {
+main() async {
+  await initModule();
   runApp(const MyApp());
 }
 
