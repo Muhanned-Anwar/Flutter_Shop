@@ -5,9 +5,10 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_weight.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
-import 'package:avatar_course2_5_shop/core/routes.dart';
 import 'package:avatar_course2_5_shop/core/widgets/base_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../route/routes.dart';
 
 class AuthenticationView extends StatefulWidget {
   const AuthenticationView({Key? key}) : super(key: key);
