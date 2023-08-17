@@ -12,4 +12,9 @@ class Constants {
 
 class KeyConstants {
   static const String outBoardingViewedKey = 'out_boarding_viewed';
+  static const String localeKey = 'locale_key';
+  static const String arabic = 'ar';
+  static const String english = 'en';
+  static const String arabicName = 'العربية';
+  static const String englishName = 'English';
 }
