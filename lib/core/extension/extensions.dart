@@ -16,6 +16,14 @@ extension NonNullString on String? {
       return this!;
     }
   }
+
+  String parseLocale() {
+    if (this == null) {
+      return 'en';
+    } else {
+      return this!;
+    }
+  }
 }
 
 
