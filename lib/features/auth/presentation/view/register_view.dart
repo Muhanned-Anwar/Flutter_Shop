@@ -77,7 +77,7 @@ class _RegisterViewState extends State<RegisterView> {
                 cursorColor: ManagerColors.primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: ManagerStrings.username,
                   labelStyle: TextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
@@ -95,7 +95,7 @@ class _RegisterViewState extends State<RegisterView> {
                 cursorColor: ManagerColors.primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Email',
+                  labelText: ManagerStrings.email,
                   labelStyle: TextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
@@ -107,13 +107,13 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),
               ),
-              SizedBox(height: ManagerHeight.h16),
+              const SizedBox(height: ManagerHeight.h16),
               TextField(
                 controller: _phoneTextEditingController,
                 cursorColor: ManagerColors.primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Phone',
+                  labelText: ManagerStrings.phone,
                   labelStyle: TextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
@@ -125,13 +125,13 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),
               ),
-              SizedBox(height: ManagerHeight.h16),
+              const SizedBox(height: ManagerHeight.h16),
               TextField(
                 controller: _passwordTextEditingController,
                 cursorColor: ManagerColors.primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: ManagerStrings.password,
                   labelStyle: TextStyle(
                     fontSize: ManagerFontSizes.s16,
                     color: ManagerColors.gray,
@@ -144,13 +144,13 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),
               ),
-              SizedBox(height: ManagerHeight.h16),
+              const SizedBox(height: ManagerHeight.h16),
               TextField(
                 controller: _confirmPasswordTextEditingController,
                 cursorColor: ManagerColors.primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: ManagerStrings.confirmPassword,
                   labelStyle: TextStyle(
                     fontSize: ManagerFontSizes.s16,
                     color: ManagerColors.gray,
@@ -180,9 +180,9 @@ class _RegisterViewState extends State<RegisterView> {
                     onTap: (){
                       Navigator.pushReplacementNamed(context, Routes.loginView);
                     },
-                    child: const Text(
+                    child: Text(
                       ManagerStrings.signIn,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: ManagerColors.primaryColor,
                         fontSize: ManagerFontSizes.s16,
                       ),
@@ -195,7 +195,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               BaseButton(
                 onPressed: () {},
-                title: 'Register',
+                title: ManagerStrings.register,
                 textStyle: TextStyle(
                   color: ManagerColors.white,
                   fontSize: ManagerFontSizes.s16,

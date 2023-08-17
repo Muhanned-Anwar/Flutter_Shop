@@ -40,7 +40,7 @@ class RouteGenerator {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
         appBar: AppBar(),
-        body: const Center(
+        body: Center(
           child: Text(ManagerStrings.notFoundRoute),
         ),
       ),

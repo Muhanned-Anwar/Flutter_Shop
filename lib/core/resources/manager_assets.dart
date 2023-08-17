@@ -13,3 +13,7 @@ class ManagerAssets {
   static const String twitter = 'assets/images/auth/twitter.png';
   static const String loginLogo = 'assets/images/auth/login_logo.png';
 }
+
+class ManagerPaths {
+  static const String translationsPath = 'assets/translations';
+}

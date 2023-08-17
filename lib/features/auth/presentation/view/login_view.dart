@@ -74,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
                 cursorColor: ManagerColors.primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Email',
+                  labelText: ManagerStrings.email,
                   labelStyle: TextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
@@ -92,7 +92,7 @@ class _LoginViewState extends State<LoginView> {
                 cursorColor: ManagerColors.primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: ManagerStrings.password,
                   labelStyle: TextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
@@ -128,9 +128,9 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ],
                   ),
-                  const Text(
+                   Text(
                     ManagerStrings.forgotYourPassword,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: ManagerColors.primaryColor,
                       fontSize: ManagerFontSizes.s16,
                     ),
@@ -155,9 +155,9 @@ class _LoginViewState extends State<LoginView> {
                       Navigator.pushReplacementNamed(
                           context, Routes.registerView);
                     },
-                    child: const Text(
+                    child:  Text(
                       ManagerStrings.signUp,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: ManagerColors.primaryColor,
                         fontSize: ManagerFontSizes.s16,
                       ),
@@ -170,10 +170,9 @@ class _LoginViewState extends State<LoginView> {
               ),
               BaseButton(
                 onPressed: () {
-                  int a = 1 + 5;
                   Navigator.pushNamed(context, Routes.homeView);
                 },
-                title: 'Login',
+                title: ManagerStrings.login,
                 textStyle: TextStyle(
                   color: ManagerColors.white,
                   fontSize: ManagerFontSizes.s16,

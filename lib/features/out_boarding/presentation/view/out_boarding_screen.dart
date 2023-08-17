@@ -128,7 +128,7 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                     _currentPageIndex = value;
                   });
                 },
-                children: const [
+                children: [
                   OutBoardingContent(
                     image: ManagerAssets.outBoarding1,
                     title: ManagerStrings.outBoardingTitle1,
