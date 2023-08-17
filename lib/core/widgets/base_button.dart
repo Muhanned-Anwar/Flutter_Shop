@@ -9,7 +9,7 @@ import '../resources/manager_width.dart';
 
 class BaseButton extends StatelessWidget {
   final int? spacerFlex;
-  final String title;
+  final String? title;
   final bool isVisibleIcon;
   final double width;
   final double height;
@@ -25,7 +25,7 @@ class BaseButton extends StatelessWidget {
 
   BaseButton({
     super.key,
-    this.title = ManagerStrings.start,
+    this.title,
     this.isVisibleIcon = Constants.baseButtonVisibleIcon,
     this.width = ManagerWidth.w64,
     this.height = ManagerHeight.h50,
@@ -55,7 +55,7 @@ class BaseButton extends StatelessWidget {
             flex: spacerFlex ?? Constants.baseButtonFirstSpacerFlex,
           ),
           Text(
-            title,
+            title ?? ManagerStrings.start,
             style: textStyle,
           ),
           Spacer(
