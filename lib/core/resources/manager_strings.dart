@@ -30,5 +30,6 @@ class ManagerStrings {
   static String get confirmPassword => tr('confirmPassword');
   static String get register => tr('register');
   static String get login => tr('login');
+  static String get homeView => tr('homeView');
 }
 

@@ -27,5 +27,6 @@
   "phone": "رقم الجوال",
   "confirmPassword": "تاكيد كلمة المرور",
   "register": "تسجيل",
-  "login": "تسجيل دخول"
+  "login": "تسجيل دخول",
+  "homeView": "Home View"
 }
