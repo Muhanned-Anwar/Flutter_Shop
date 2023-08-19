@@ -1,24 +1,26 @@
+import 'package:avatar_course2_5_shop/core/utils/size_util.dart';
+
 class ManagerHeight {
-  static const double h2 = 2;
-  static const double h4 = 4;
-  static const double h6 = 6;
-  static const double h8 = 8;
-  static const double h10 = 10;
-  static const double h12 = 12;
-  static const double h14 = 14;
-  static const double h16 = 16;
-  static const double h24 = 24;
-  static const double h30 = 30;
-  static const double h34 = 34;
-  static const double h40 = 40;
-  static const double h50 = 50;
-  static const double h56 = 56;
-  static const double h60 = 60;
-  static const double h70 = 70;
-  static const double h80 = 80;
-  static const double h90 = 90;
-  static const double h100 = 100;
-  static const double h120 = 120;
-  static const double h220 = 220;
-  static const double h500 = 500;
+  static double h2 = SizeUtil.setHeight(2);
+  static double h4 = SizeUtil.setHeight(4);
+  static double h6 = SizeUtil.setHeight(6);
+  static double h8 = SizeUtil.setHeight(8);
+  static double h10 = SizeUtil.setHeight(10);
+  static double h12 = SizeUtil.setHeight(12);
+  static double h14 = SizeUtil.setHeight(14);
+  static double h16 = SizeUtil.setHeight(16);
+  static double h24 = SizeUtil.setHeight(24);
+  static double h30 = SizeUtil.setHeight(30);
+  static double h34 = SizeUtil.setHeight(34);
+  static double h40 = SizeUtil.setHeight(40);
+  static double h50 = SizeUtil.setHeight(50);
+  static double h56 = SizeUtil.setHeight(56);
+  static double h60 = SizeUtil.setHeight(60);
+  static double h70 = SizeUtil.setHeight(70);
+  static double h80 = SizeUtil.setHeight(80);
+  static double h90 = SizeUtil.setHeight(90);
+  static double h100 = SizeUtil.setHeight(100);
+  static double h120 = SizeUtil.setHeight(120);
+  static double h220 = SizeUtil.setHeight(220);
+  static double h500 = SizeUtil.setHeight(500);
 }

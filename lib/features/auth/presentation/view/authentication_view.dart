@@ -38,7 +38,7 @@ class _AuthenticationViewState extends State<AuthenticationView> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            margin: const EdgeInsets.symmetric(horizontal: ManagerWidth.w50),
+            margin: EdgeInsets.symmetric(horizontal: ManagerWidth.w50),
             child: Column(
               children: [
                 const Spacer(
@@ -83,20 +83,20 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                       ),
                       spacerFlex: 4,
                     ),
-                    const SizedBox(height: ManagerHeight.h24),
+                     SizedBox(height: ManagerHeight.h24),
                     BaseButton(
                       onPressed: () {
                         Navigator.pushNamed(context, Routes.loginView);
                       },
                       title: ManagerStrings.signIn,
-                      textStyle: const TextStyle(
+                      textStyle:  TextStyle(
                         color: ManagerColors.primaryColor,
                         fontSize: ManagerFontSizes.s16,
                       ),
                       bgColor: ManagerColors.white,
                       spacerFlex: 4,
                     ),
-                    const SizedBox(height: ManagerHeight.h24),
+                    SizedBox(height: ManagerHeight.h24),
                     BaseButton(
                       onPressed: () {
                         Navigator.pushNamed(context, Routes.homeView);

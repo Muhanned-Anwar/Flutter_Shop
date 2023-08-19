@@ -1,5 +1,7 @@
 class Constants {
   static const double appBarElevation = 0;
+  static const double designDeviceWidth = 375;
+  static const double designDeviceHeight = 812;
   static const double elevationZero = 0;
   static const double baseButtonElevation = 2;
   static const int splashTime = 3;
