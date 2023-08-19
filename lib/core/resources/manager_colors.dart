@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class ManagerColors {
   static const Color primaryColor = Color(0xffFF7F3F);
+  static const Color primaryTextColor = Color(0xff1c1a1a);
   static Color secondaryColor = Colors.brown;
   static Color brown200 = Colors.brown.shade300;
   static Color transparent = Colors.transparent;
