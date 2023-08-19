@@ -1,4 +1,5 @@
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/manager_font_sizes.dart';
 import '../../../../core/resources/manager_font_weight.dart';
@@ -61,10 +62,9 @@ class _RegisterViewState extends State<RegisterView> {
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   ManagerStrings.signUp.toUpperCase(),
-                  style: TextStyle(
+                  style: getBoldTextStyle(
                     color: ManagerColors.black,
                     fontSize: ManagerFontSizes.s36,
-                    fontWeight: ManagerFontWeight.w600,
                   ),
                 ),
               ),
@@ -75,7 +75,7 @@ class _RegisterViewState extends State<RegisterView> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: ManagerStrings.username,
-                  labelStyle: TextStyle(
+                  labelStyle: getRegularTextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
                   enabledBorder: UnderlineInputBorder(
@@ -93,7 +93,7 @@ class _RegisterViewState extends State<RegisterView> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: ManagerStrings.email,
-                  labelStyle: TextStyle(
+                  labelStyle: getRegularTextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
                   enabledBorder: UnderlineInputBorder(
@@ -111,7 +111,7 @@ class _RegisterViewState extends State<RegisterView> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: ManagerStrings.phone,
-                  labelStyle: TextStyle(
+                  labelStyle: getRegularTextStyle(
                       fontSize: ManagerFontSizes.s16,
                       color: ManagerColors.gray),
                   enabledBorder: UnderlineInputBorder(
@@ -129,7 +129,7 @@ class _RegisterViewState extends State<RegisterView> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: ManagerStrings.password,
-                  labelStyle: TextStyle(
+                  labelStyle: getRegularTextStyle(
                     fontSize: ManagerFontSizes.s16,
                     color: ManagerColors.gray,
                   ),
@@ -148,7 +148,7 @@ class _RegisterViewState extends State<RegisterView> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: ManagerStrings.confirmPassword,
-                  labelStyle: TextStyle(
+                  labelStyle: getRegularTextStyle(
                     fontSize: ManagerFontSizes.s16,
                     color: ManagerColors.gray,
                   ),
@@ -165,7 +165,7 @@ class _RegisterViewState extends State<RegisterView> {
                 children: [
                   Text(
                     ManagerStrings.alreadyHaveAccount,
-                    style: TextStyle(
+                    style: getRegularTextStyle(
                       color: ManagerColors.black,
                       fontSize: ManagerFontSizes.s16,
                     ),
@@ -177,7 +177,7 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                     child: Text(
                       ManagerStrings.signIn,
-                      style:  TextStyle(
+                      style:  getRegularTextStyle(
                         color: ManagerColors.primaryColor,
                         fontSize: ManagerFontSizes.s16,
                       ),
@@ -189,7 +189,7 @@ class _RegisterViewState extends State<RegisterView> {
               BaseButton(
                 onPressed: () {},
                 title: ManagerStrings.register,
-                textStyle: TextStyle(
+                textStyle: getBoldTextStyle(
                   color: ManagerColors.white,
                   fontSize: ManagerFontSizes.s16,
                 ),

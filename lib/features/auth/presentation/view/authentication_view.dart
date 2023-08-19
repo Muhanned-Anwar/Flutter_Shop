@@ -77,7 +77,7 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                         Navigator.pushNamed(context, Routes.registerView);
                       },
                       title: ManagerStrings.signUp,
-                      textStyle: TextStyle(
+                      textStyle: getRegularTextStyle(
                         color: ManagerColors.white,
                         fontSize: ManagerFontSizes.s16,
                       ),
@@ -89,7 +89,7 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                         Navigator.pushNamed(context, Routes.loginView);
                       },
                       title: ManagerStrings.signIn,
-                      textStyle: TextStyle(
+                      textStyle: getRegularTextStyle(
                         color: ManagerColors.primaryColor,
                         fontSize: ManagerFontSizes.s16,
                       ),
@@ -102,7 +102,7 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                         Navigator.pushNamed(context, Routes.homeView);
                       },
                       title: ManagerStrings.visitor,
-                      textStyle: TextStyle(
+                      textStyle: getRegularTextStyle(
                         color: ManagerColors.white,
                         fontSize: ManagerFontSizes.s16,
                       ),

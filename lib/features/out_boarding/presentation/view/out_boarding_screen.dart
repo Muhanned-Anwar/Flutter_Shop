@@ -5,6 +5,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_font_weight.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,7 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                 width: ManagerWidth.w10,
                 height: ManagerHeight.h10,
                 title: ManagerStrings.start,
-                textStyle: TextStyle(
+                textStyle: getRegularTextStyle(
                   color: ManagerColors.black,
                   fontSize: ManagerFontSizes.s16,
                 ),
@@ -89,7 +90,7 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                 width: ManagerWidth.w10,
                 height: ManagerHeight.h10,
                 title: ManagerStrings.next,
-                textStyle: TextStyle(
+                textStyle: getRegularTextStyle(
                   color: ManagerColors.black,
                   fontSize: ManagerFontSizes.s16,
                 ),
@@ -190,9 +191,8 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                 visible: isLastPage(),
                 replacement: BaseButton(
                   isVisibleIcon: true,
-                  textStyle: TextStyle(
+                  textStyle: getRegularTextStyle(
                     fontSize: ManagerFontSizes.s16,
-                    fontWeight: ManagerFontWeight.regular,
                     color: ManagerColors.white,
                   ),
                   onPressed: () {
@@ -206,9 +206,8 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                 ),
                 child: BaseButton(
                   isVisibleIcon: true,
-                  textStyle: TextStyle(
+                  textStyle: getRegularTextStyle(
                     fontSize: ManagerFontSizes.s16,
-                    fontWeight: ManagerFontWeight.regular,
                     color: ManagerColors.white,
                   ),
                   onPressed: () {
