@@ -7,6 +7,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
 import 'package:avatar_course2_5_shop/core/widgets/base_button.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/resources/manager_text_styles.dart';
 import '../../../../route/routes.dart';
 
 class AuthenticationView extends StatefulWidget {
@@ -54,17 +55,16 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                 ),
                 Text(
                   ManagerStrings.welcomeTo.toUpperCase(),
-                  style: TextStyle(
+                  style: getMediumTextStyle(
                     color: ManagerColors.white,
                     fontSize: ManagerFontSizes.s24,
                   ),
                 ),
                 Text(
                   ManagerStrings.appName,
-                  style: TextStyle(
+                  style: getBoldTextStyle(
                     color: ManagerColors.white,
                     fontSize: ManagerFontSizes.s36,
-                    fontWeight: ManagerFontWeight.bold,
                   ),
                 ),
                 const Spacer(
@@ -83,13 +83,13 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                       ),
                       spacerFlex: 4,
                     ),
-                     SizedBox(height: ManagerHeight.h24),
+                    SizedBox(height: ManagerHeight.h24),
                     BaseButton(
                       onPressed: () {
                         Navigator.pushNamed(context, Routes.loginView);
                       },
                       title: ManagerStrings.signIn,
-                      textStyle:  TextStyle(
+                      textStyle: TextStyle(
                         color: ManagerColors.primaryColor,
                         fontSize: ManagerFontSizes.s16,
                       ),
