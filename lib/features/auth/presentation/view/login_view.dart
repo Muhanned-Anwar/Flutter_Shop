@@ -46,18 +46,18 @@ class _LoginViewState extends State<LoginView> {
           width: double.infinity,
           height: double.infinity,
           alignment: AlignmentDirectional.centerStart,
-          margin: const EdgeInsets.symmetric(horizontal: ManagerWidth.w50),
+          margin: EdgeInsets.symmetric(horizontal: ManagerWidth.w30),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(
+                SizedBox(
                   height: ManagerHeight.h24,
                 ),
                 Image.asset(
                   ManagerAssets.loginLogo,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: ManagerHeight.h50,
                 ),
                 Align(
@@ -67,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
                     style: TextStyle(
                       color: ManagerColors.black,
                       fontSize: ManagerFontSizes.s36,
-                      fontWeight: ManagerFontWeight.w600,
+                      fontWeight: ManagerFontWeight.regular,
                     ),
                   ),
                 ),
@@ -89,7 +89,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-                const SizedBox(height: ManagerHeight.h24),
+                SizedBox(height: ManagerHeight.h24),
                 TextField(
                   controller: _passwordTextEditingController,
                   cursorColor: ManagerColors.primaryColor,
@@ -108,40 +108,47 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-                const SizedBox(height: ManagerHeight.h14),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: ManagerWidth.w10,
-                          height: ManagerHeight.h10,
-                          decoration: BoxDecoration(
+                SizedBox(height: ManagerHeight.h14),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: ManagerWidth.w10,
+                            height: ManagerHeight.h10,
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                  color: ManagerColors.primaryColor)),
-                        ),
-                        const SizedBox(width: ManagerWidth.w6),
-                        Text(
-                          ManagerStrings.rememberMe,
-                          style: TextStyle(
-                            color: ManagerColors.black,
-                            fontSize: ManagerFontSizes.s16,
+                                color: ManagerColors.primaryColor,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      ManagerStrings.forgotYourPassword,
-                      style: const TextStyle(
-                        color: ManagerColors.primaryColor,
-                        fontSize: ManagerFontSizes.s16,
+                          SizedBox(
+                            width: ManagerWidth.w6,
+                          ),
+                          Text(
+                            ManagerStrings.rememberMe,
+                            style: TextStyle(
+                              color: ManagerColors.black,
+                              fontSize: ManagerFontSizes.s16,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      Text(
+                        ManagerStrings.forgotYourPassword,
+                        style: TextStyle(
+                          color: ManagerColors.primaryColor,
+                          fontSize: ManagerFontSizes.s16,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: ManagerHeight.h50,
                 ),
                 Row(
@@ -153,7 +160,7 @@ class _LoginViewState extends State<LoginView> {
                         fontSize: ManagerFontSizes.s16,
                       ),
                     ),
-                    const SizedBox(width: ManagerWidth.w6),
+                    SizedBox(width: ManagerWidth.w6),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacementNamed(
@@ -161,7 +168,7 @@ class _LoginViewState extends State<LoginView> {
                       },
                       child: Text(
                         ManagerStrings.signUp,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: ManagerColors.primaryColor,
                           fontSize: ManagerFontSizes.s16,
                         ),
@@ -169,7 +176,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   height: ManagerHeight.h56,
                 ),
                 BaseButton(
@@ -183,7 +190,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   spacerFlex: 4,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: ManagerHeight.h40,
                 ),
                 Text(
@@ -193,7 +200,7 @@ class _LoginViewState extends State<LoginView> {
                     fontSize: ManagerFontSizes.s16,
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: ManagerHeight.h40,
                 ),
                 Row(
@@ -216,7 +223,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ],
                 ),
-                const SizedBox(height: ManagerHeight.h24),
+                SizedBox(height: ManagerHeight.h24),
               ],
             ),
           ),

@@ -54,10 +54,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   Image.asset(
                     ManagerAssets.splash3,
                   ),
-                  const SizedBox(height: ManagerHeight.h12),
+                   SizedBox(height: ManagerHeight.h12),
                    Text(
                     ManagerStrings.appName,
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontSize: ManagerFontSizes.s20,
                     ),
                   )

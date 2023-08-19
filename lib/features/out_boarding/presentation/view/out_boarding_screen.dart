@@ -63,7 +63,7 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
           Container(
             width: ManagerWidth.w100,
             height: ManagerHeight.h40,
-            margin: const EdgeInsetsDirectional.only(
+            margin: EdgeInsetsDirectional.only(
               end: ManagerWidth.w12,
             ),
             child: Visibility(
@@ -110,7 +110,7 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
         ],
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(
+        margin:  EdgeInsets.symmetric(
           horizontal: ManagerWidth.w30,
           vertical: ManagerHeight.h34,
         ),
@@ -181,9 +181,9 @@ class _OutBoardingScreenState extends State<OutBoardingScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: ManagerHeight.h40),
+             SizedBox(height: ManagerHeight.h40),
             Padding(
-              padding: const EdgeInsets.symmetric(
+              padding:  EdgeInsets.symmetric(
                 horizontal: ManagerWidth.w40,
               ),
               child: Visibility(

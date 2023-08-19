@@ -28,7 +28,7 @@ class OutBoardingContent extends StatelessWidget {
             image,
             height: ManagerHeight.h220,
           ),
-          const SizedBox(
+           SizedBox(
             height: ManagerHeight.h90,
           ),
           Text(
@@ -39,7 +39,7 @@ class OutBoardingContent extends StatelessWidget {
               color: ManagerColors.outBoardingTitleColor,
             ),
           ),
-          const SizedBox(
+           SizedBox(
             height: ManagerHeight.h40,
           ),
           SizedBox(
@@ -54,7 +54,7 @@ class OutBoardingContent extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          const SizedBox(
+           SizedBox(
             height: ManagerHeight.h40,
           ),
         ],

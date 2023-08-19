@@ -6,12 +6,12 @@ import '../../../../core/resources/manager_width.dart';
 
 Container progressIndicator({
   Color color = ManagerColors.progressIndicatorColor,
-  double width = ManagerWidth.w8,
+  double? width,
 }) {
   return Container(
-    width: width,
+    width: width ?? ManagerWidth.w8,
     height: ManagerHeight.h8,
-    margin: const EdgeInsetsDirectional.only(
+    margin: EdgeInsetsDirectional.only(
       end: ManagerWidth.w12,
     ),
     decoration: BoxDecoration(
