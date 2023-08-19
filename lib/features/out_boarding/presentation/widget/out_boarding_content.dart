@@ -1,3 +1,4 @@
+import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/manager_assets.dart';
 import '../../../../core/resources/manager_colors.dart';
@@ -33,9 +34,8 @@ class OutBoardingContent extends StatelessWidget {
           ),
           Text(
             title ?? ManagerStrings.outBoardingTitle1,
-            style: TextStyle(
+            style: getBoldTextStyle(
               fontSize: ManagerFontSizes.s26,
-              fontWeight: ManagerFontWeight.bold,
               color: ManagerColors.outBoardingTitleColor,
             ),
           ),
@@ -46,9 +46,8 @@ class OutBoardingContent extends StatelessWidget {
             height: ManagerHeight.h100,
             child: Text(
               subTitle ?? ManagerStrings.outBoardingSubTitle1,
-              style: TextStyle(
+              style: getRegularTextStyle(
                 fontSize: ManagerFontSizes.s18,
-                fontWeight: ManagerFontWeight.regular,
                 color: ManagerColors.outBoardingTitleColor,
               ),
               textAlign: TextAlign.center,

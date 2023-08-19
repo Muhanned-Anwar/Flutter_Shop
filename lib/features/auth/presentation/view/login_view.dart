@@ -1,4 +1,5 @@
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/manager_assets.dart';
 import '../../../../core/resources/manager_font_sizes.dart';
@@ -64,10 +65,9 @@ class _LoginViewState extends State<LoginView> {
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     ManagerStrings.signIn.toUpperCase(),
-                    style: TextStyle(
+                    style: getRegularTextStyle(
                       color: ManagerColors.black,
                       fontSize: ManagerFontSizes.s36,
-                      fontWeight: ManagerFontWeight.regular,
                     ),
                   ),
                 ),
@@ -77,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: ManagerStrings.email,
-                    labelStyle: TextStyle(
+                    labelStyle: getRegularTextStyle(
                         fontSize: ManagerFontSizes.s16,
                         color: ManagerColors.gray),
                     enabledBorder: UnderlineInputBorder(
@@ -96,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: ManagerStrings.password,
-                    labelStyle: TextStyle(
+                    labelStyle: getRegularTextStyle(
                         fontSize: ManagerFontSizes.s16,
                         color: ManagerColors.gray),
                     enabledBorder: UnderlineInputBorder(
@@ -131,16 +131,17 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           Text(
                             ManagerStrings.rememberMe,
-                            style: TextStyle(
+                            style: getRegularTextStyle(
                               color: ManagerColors.black,
                               fontSize: ManagerFontSizes.s16,
                             ),
                           ),
                         ],
                       ),
+                      const SizedBox(width: 10,),
                       Text(
                         ManagerStrings.forgotYourPassword,
-                        style: TextStyle(
+                        style: getRegularTextStyle(
                           color: ManagerColors.primaryColor,
                           fontSize: ManagerFontSizes.s16,
                         ),
@@ -155,7 +156,7 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     Text(
                       ManagerStrings.donNotHaveAnAccount,
-                      style: TextStyle(
+                      style: getRegularTextStyle(
                         color: ManagerColors.black,
                         fontSize: ManagerFontSizes.s16,
                       ),
@@ -168,7 +169,7 @@ class _LoginViewState extends State<LoginView> {
                       },
                       child: Text(
                         ManagerStrings.signUp,
-                        style: TextStyle(
+                        style: getRegularTextStyle(
                           color: ManagerColors.primaryColor,
                           fontSize: ManagerFontSizes.s16,
                         ),
@@ -184,7 +185,7 @@ class _LoginViewState extends State<LoginView> {
                     Navigator.pushNamed(context, Routes.homeView);
                   },
                   title: ManagerStrings.login,
-                  textStyle: TextStyle(
+                  textStyle: getBoldTextStyle(
                     color: ManagerColors.white,
                     fontSize: ManagerFontSizes.s16,
                   ),
@@ -195,7 +196,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 Text(
                   ManagerStrings.or.toUpperCase(),
-                  style: TextStyle(
+                  style: getRegularTextStyle(
                     color: ManagerColors.gray,
                     fontSize: ManagerFontSizes.s16,
                   ),
