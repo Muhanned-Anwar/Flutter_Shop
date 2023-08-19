@@ -9,7 +9,7 @@ class ManagerColors {
   static Color transparent = Colors.transparent;
   static Color white = Colors.white;
   static Color black = Colors.black;
-  static Color gray = Colors.grey.shade700;
+  static Color gray = Colors.grey;
   static Color grayLight = Colors.grey.shade300;
   static Color white70 = Colors.white70;
   static Color outBoardingTitleColor = const Color(0xff393939);
