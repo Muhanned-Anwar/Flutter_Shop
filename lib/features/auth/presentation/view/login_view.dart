@@ -37,6 +37,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        // resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: ManagerColors.transparent,
           elevation: 0,
@@ -46,170 +47,178 @@ class _LoginViewState extends State<LoginView> {
           height: double.infinity,
           alignment: AlignmentDirectional.centerStart,
           margin: const EdgeInsets.symmetric(horizontal: ManagerWidth.w50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Spacer(
-                flex: 3,
-              ),
-              Image.asset(
-                ManagerAssets.loginLogo,
-              ),
-              const Spacer(
-                flex: 3,
-              ),
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  ManagerStrings.signIn.toUpperCase(),
-                  style: TextStyle(
-                    color: ManagerColors.black,
-                    fontSize: ManagerFontSizes.s36,
-                    fontWeight: ManagerFontWeight.w600,
-                  ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: ManagerHeight.h24,
                 ),
-              ),
-              TextField(
-                controller: _emailTextEditingController,
-                cursorColor: ManagerColors.primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: ManagerStrings.email,
-                  labelStyle: TextStyle(
-                      fontSize: ManagerFontSizes.s16,
-                      color: ManagerColors.gray),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.secondaryColor),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.primaryColor),
-                  ),
+                Image.asset(
+                  ManagerAssets.loginLogo,
                 ),
-              ),
-              const SizedBox(height: ManagerHeight.h24),
-              TextField(
-                controller: _passwordTextEditingController,
-                cursorColor: ManagerColors.primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: ManagerStrings.password,
-                  labelStyle: TextStyle(
-                      fontSize: ManagerFontSizes.s16,
-                      color: ManagerColors.gray),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.secondaryColor),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.primaryColor),
-                  ),
+                const SizedBox(
+                  height: ManagerHeight.h50,
                 ),
-              ),
-              const SizedBox(height: ManagerHeight.h14),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: ManagerWidth.w10,
-                        height: ManagerHeight.h10,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border:
-                                Border.all(color: ManagerColors.primaryColor)),
-                      ),
-                      const SizedBox(width: ManagerWidth.w6),
-                      Text(
-                        ManagerStrings.rememberMe,
-                        style: TextStyle(
-                          color: ManagerColors.black,
-                          fontSize: ManagerFontSizes.s16,
-                        ),
-                      ),
-                    ],
-                  ),
-                   Text(
-                    ManagerStrings.forgotYourPassword,
-                    style: const TextStyle(
-                      color: ManagerColors.primaryColor,
-                      fontSize: ManagerFontSizes.s16,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(
-                flex: 2,
-              ),
-              Row(
-                children: [
-                  Text(
-                    ManagerStrings.donNotHaveAnAccount,
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
+                    ManagerStrings.signIn.toUpperCase(),
                     style: TextStyle(
                       color: ManagerColors.black,
-                      fontSize: ManagerFontSizes.s16,
+                      fontSize: ManagerFontSizes.s36,
+                      fontWeight: ManagerFontWeight.w600,
                     ),
                   ),
-                  const SizedBox(width: ManagerWidth.w6),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(
-                          context, Routes.registerView);
-                    },
-                    child:  Text(
-                      ManagerStrings.signUp,
+                ),
+                TextField(
+                  controller: _emailTextEditingController,
+                  cursorColor: ManagerColors.primaryColor,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: ManagerStrings.email,
+                    labelStyle: TextStyle(
+                        fontSize: ManagerFontSizes.s16,
+                        color: ManagerColors.gray),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: ManagerColors.secondaryColor),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.primaryColor),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: ManagerHeight.h24),
+                TextField(
+                  controller: _passwordTextEditingController,
+                  cursorColor: ManagerColors.primaryColor,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: ManagerStrings.password,
+                    labelStyle: TextStyle(
+                        fontSize: ManagerFontSizes.s16,
+                        color: ManagerColors.gray),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: ManagerColors.secondaryColor),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.primaryColor),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: ManagerHeight.h14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: ManagerWidth.w10,
+                          height: ManagerHeight.h10,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: ManagerColors.primaryColor)),
+                        ),
+                        const SizedBox(width: ManagerWidth.w6),
+                        Text(
+                          ManagerStrings.rememberMe,
+                          style: TextStyle(
+                            color: ManagerColors.black,
+                            fontSize: ManagerFontSizes.s16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      ManagerStrings.forgotYourPassword,
                       style: const TextStyle(
                         color: ManagerColors.primaryColor,
                         fontSize: ManagerFontSizes.s16,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const Spacer(
-                flex: 2,
-              ),
-              BaseButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, Routes.homeView);
-                },
-                title: ManagerStrings.login,
-                textStyle: TextStyle(
-                  color: ManagerColors.white,
-                  fontSize: ManagerFontSizes.s16,
+                  ],
                 ),
-                spacerFlex: 4,
-              ),
-              const Spacer(),
-              Text(
-                ManagerStrings.or.toUpperCase(),
-                style: TextStyle(
-                  color: ManagerColors.gray,
-                  fontSize: ManagerFontSizes.s16,
+                const SizedBox(
+                  height: ManagerHeight.h50,
                 ),
-              ),
-              const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    ManagerAssets.facebook,
-                    width: ManagerWidth.w60,
-                    height: ManagerHeight.h60,
+                Row(
+                  children: [
+                    Text(
+                      ManagerStrings.donNotHaveAnAccount,
+                      style: TextStyle(
+                        color: ManagerColors.black,
+                        fontSize: ManagerFontSizes.s16,
+                      ),
+                    ),
+                    const SizedBox(width: ManagerWidth.w6),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                            context, Routes.registerView);
+                      },
+                      child: Text(
+                        ManagerStrings.signUp,
+                        style: const TextStyle(
+                          color: ManagerColors.primaryColor,
+                          fontSize: ManagerFontSizes.s16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: ManagerHeight.h56,
+                ),
+                BaseButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.homeView);
+                  },
+                  title: ManagerStrings.login,
+                  textStyle: TextStyle(
+                    color: ManagerColors.white,
+                    fontSize: ManagerFontSizes.s16,
                   ),
-                  Image.asset(
-                    ManagerAssets.google,
-                    width: ManagerWidth.w60,
-                    height: ManagerHeight.h60,
+                  spacerFlex: 4,
+                ),
+                const SizedBox(
+                  height: ManagerHeight.h40,
+                ),
+                Text(
+                  ManagerStrings.or.toUpperCase(),
+                  style: TextStyle(
+                    color: ManagerColors.gray,
+                    fontSize: ManagerFontSizes.s16,
                   ),
-                  Image.asset(
-                    ManagerAssets.twitter,
-                    width: ManagerWidth.w60,
-                    height: ManagerHeight.h60,
-                  ),
-                ],
-              ),
-              const Spacer(),
-            ],
+                ),
+                const SizedBox(
+                  height: ManagerHeight.h40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      ManagerAssets.facebook,
+                      width: ManagerWidth.w60,
+                      height: ManagerHeight.h60,
+                    ),
+                    Image.asset(
+                      ManagerAssets.google,
+                      width: ManagerWidth.w60,
+                      height: ManagerHeight.h60,
+                    ),
+                    Image.asset(
+                      ManagerAssets.twitter,
+                      width: ManagerWidth.w60,
+                      height: ManagerHeight.h60,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: ManagerHeight.h24),
+              ],
+            ),
           ),
         ));
   }
