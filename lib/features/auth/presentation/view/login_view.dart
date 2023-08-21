@@ -110,45 +110,41 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 SizedBox(height: ManagerHeight.h14),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: ManagerWidth.w10,
-                            height: ManagerHeight.h10,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: ManagerColors.primaryColor,
-                              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: ManagerWidth.w10,
+                          height: ManagerHeight.h10,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: ManagerColors.primaryColor,
                             ),
                           ),
-                          SizedBox(
-                            width: ManagerWidth.w6,
-                          ),
-                          Text(
-                            ManagerStrings.rememberMe,
-                            style: getRegularTextStyle(
-                              color: ManagerColors.black,
-                              fontSize: ManagerFontSizes.s16,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 10,),
-                      Text(
-                        ManagerStrings.forgotYourPassword,
-                        style: getRegularTextStyle(
-                          color: ManagerColors.primaryColor,
-                          fontSize: ManagerFontSizes.s16,
                         ),
+                        SizedBox(
+                          width: ManagerWidth.w6,
+                        ),
+                        Text(
+                          ManagerStrings.rememberMe,
+                          style: getRegularTextStyle(
+                            color: ManagerColors.black,
+                            fontSize: ManagerFontSizes.s12,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      ManagerStrings.forgotYourPassword,
+                      style: getRegularTextStyle(
+                        color: ManagerColors.primaryColor,
+                        fontSize: ManagerFontSizes.s12,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: ManagerHeight.h50,
