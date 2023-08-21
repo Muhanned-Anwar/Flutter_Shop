@@ -3,17 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../features/auth/presentation/controller/auth_controller.dart';
+import '../features/splash/presentation/controller/splash_controller.dart';
 
 initModule() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppSettingsSharedPreferences().initPreferences();
 }
 
+initSplash() {
+  Get.put<SplashController>(SplashController());
+}
 
-initAuth(){
+disposeSplash() {
+  Get.delete<SplashController>();
+}
+
+initAuth() {
+  disposeSplash();
   Get.put<AuthController>(AuthController());
 }
 
-disposeAuth(){
+disposeAuth() {
   Get.delete<AuthController>();
 }
+
+initHome() {
+  disposeSplash();
+  disposeAuth();
+}
+
+disposeHome() {}
