@@ -159,7 +159,7 @@ class LoginView extends StatelessWidget {
                     ),
                     BaseButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, Routes.homeView);
+                        controller.performLogin(context);
                       },
                       title: ManagerStrings.login,
                       textStyle: getBoldTextStyle(
