@@ -3,32 +3,10 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
-import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../core/constants.dart';
-import '../../../../route/routes.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(
-      const Duration(
-        seconds: Constants.splashTime,
-      ),
-      () => AppSettingsSharedPreferences().outBoardingViewed
-          ? Get.offAllNamed(Routes.authenticationView)
-          : Get.offAllNamed(Routes.outBoardingScreen),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +33,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   Image.asset(
                     ManagerAssets.splash3,
                   ),
-                   SizedBox(height: ManagerHeight.h12),
-                   Text(
+                  SizedBox(height: ManagerHeight.h12),
+                  Text(
                     ManagerStrings.appName,
-                    style:  getRegularTextStyle(
+                    style: getRegularTextStyle(
                       fontSize: ManagerFontSizes.s20,
                     ),
                   )
