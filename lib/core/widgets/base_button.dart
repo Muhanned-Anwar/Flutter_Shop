@@ -1,4 +1,5 @@
 import 'package:avatar_course2_5_shop/core/constants.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:flutter/material.dart';
 import '../resources/manager_colors.dart';
 import '../resources/manager_font_sizes.dart';
@@ -17,9 +18,8 @@ class BaseButton extends StatelessWidget {
   final double elevation;
   void Function() onPressed;
 
-  TextStyle? textStyle = TextStyle(
+  TextStyle? textStyle = getRegularTextStyle(
     fontSize: ManagerFontSizes.s16,
-    fontWeight: ManagerFontWeight.regular,
     color: ManagerColors.white,
   );
 
