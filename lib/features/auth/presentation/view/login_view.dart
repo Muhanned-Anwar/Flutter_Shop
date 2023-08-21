@@ -1,3 +1,4 @@
+import 'package:avatar_course2_5_shop/core/constants.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/manager_assets.dart';
@@ -191,17 +192,30 @@ class _LoginViewState extends State<LoginView> {
                   spacerFlex: 4,
                 ),
                 SizedBox(
-                  height: ManagerHeight.h40,
+                  height: ManagerHeight.h24,
                 ),
-                Text(
-                  ManagerStrings.or.toUpperCase(),
-                  style: TextStyle(
-                    color: ManagerColors.gray,
-                    fontSize: ManagerFontSizes.s16,
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: divider(endIndent: ManagerWidth.w16),
+                      ),
+                      Text(
+                        ManagerStrings.or.toUpperCase(),
+                        style: TextStyle(
+                          color: ManagerColors.gray,
+                          fontSize: ManagerFontSizes.s16,
+                        ),
+                      ),
+                      Expanded(
+                        child: divider(indent: ManagerWidth.w16),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
-                  height: ManagerHeight.h40,
+                  height: ManagerHeight.h16,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -228,5 +242,14 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ));
+  }
+
+  Divider divider({double endIndent = 0, double indent = 0}) {
+    return Divider(
+      color: ManagerColors.gray,
+      thickness: 0.7,
+      endIndent: endIndent,
+      indent: indent,
+    );
   }
 }
