@@ -1,3 +1,4 @@
+import 'package:avatar_course2_5_shop/config/dependancy_injection.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/features/auth/presentation/view/register_view.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +25,14 @@ class RouteGenerator {
       case Routes.outBoardingScreen:
         return MaterialPageRoute(builder: (_) => const OutBoardingScreen());
       case Routes.authenticationView:
+        initAuth();
         return MaterialPageRoute(builder: (_) => const AuthenticationView());
       case Routes.loginView:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerView:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.homeView:
+        disposeAuth();
         return MaterialPageRoute(builder: (_) => const HomeView());
       default:
         return unDefineRoute();

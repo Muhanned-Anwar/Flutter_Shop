@@ -1,205 +1,178 @@
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
+import 'package:avatar_course2_5_shop/features/auth/presentation/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../core/resources/manager_font_sizes.dart';
-import '../../../../core/resources/manager_font_weight.dart';
 import '../../../../core/resources/manager_height.dart';
 import '../../../../core/resources/manager_strings.dart';
 import '../../../../core/resources/manager_width.dart';
 import '../../../../core/widgets/base_button.dart';
 import '../../../../route/routes.dart';
 
-class RegisterView extends StatefulWidget {
+class RegisterView extends StatelessWidget {
   const RegisterView({Key? key}) : super(key: key);
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
-}
-
-class _RegisterViewState extends State<RegisterView> {
-  late TextEditingController _userNameTextEditingController;
-  late TextEditingController _emailTextEditingController;
-  late TextEditingController _passwordTextEditingController;
-  late TextEditingController _confirmPasswordTextEditingController;
-  late TextEditingController _phoneTextEditingController;
-
-  @override
-  void initState() {
-    super.initState();
-    _emailTextEditingController = TextEditingController();
-    _passwordTextEditingController = TextEditingController();
-    _confirmPasswordTextEditingController = TextEditingController();
-    _userNameTextEditingController = TextEditingController();
-    _phoneTextEditingController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _emailTextEditingController.dispose();
-    _passwordTextEditingController.dispose();
-    _confirmPasswordTextEditingController.dispose();
-    _userNameTextEditingController.dispose();
-    _phoneTextEditingController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ManagerColors.transparent,
-        elevation: 0,
-      ),
-      body: Container(
-        alignment: AlignmentDirectional.centerStart,
-        margin: EdgeInsets.symmetric(horizontal: ManagerWidth.w50),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-               SizedBox(height: ManagerHeight.h30),
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  ManagerStrings.signUp.toUpperCase(),
-                  style: getBoldTextStyle(
-                    color: ManagerColors.black,
-                    fontSize: ManagerFontSizes.s36,
-                  ),
-                ),
-              ),
-              SizedBox(height: ManagerHeight.h30),
-              TextField(
-                controller: _userNameTextEditingController,
-                cursorColor: ManagerColors.primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: ManagerStrings.username,
-                  labelStyle: getRegularTextStyle(
-                      fontSize: ManagerFontSizes.s16,
-                      color: ManagerColors.gray),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.grayLight),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.primaryColor),
-                  ),
-                ),
-              ),
-              SizedBox(height: ManagerHeight.h16),
-              TextField(
-                controller: _emailTextEditingController,
-                cursorColor: ManagerColors.primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: ManagerStrings.email,
-                  labelStyle: getRegularTextStyle(
-                      fontSize: ManagerFontSizes.s16,
-                      color: ManagerColors.gray),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.grayLight),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.primaryColor),
-                  ),
-                ),
-              ),
-              SizedBox(height: ManagerHeight.h16),
-              TextField(
-                controller: _phoneTextEditingController,
-                cursorColor: ManagerColors.primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: ManagerStrings.phone,
-                  labelStyle: getRegularTextStyle(
-                      fontSize: ManagerFontSizes.s16,
-                      color: ManagerColors.gray),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.grayLight),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.primaryColor),
-                  ),
-                ),
-              ),
-              SizedBox(height: ManagerHeight.h16),
-              TextField(
-                controller: _passwordTextEditingController,
-                cursorColor: ManagerColors.primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: ManagerStrings.password,
-                  labelStyle: getRegularTextStyle(
-                    fontSize: ManagerFontSizes.s16,
-                    color: ManagerColors.gray,
-                  ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.grayLight),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.primaryColor),
-                  ),
-                ),
-              ),
-               SizedBox(height: ManagerHeight.h16),
-              TextField(
-                controller: _confirmPasswordTextEditingController,
-                cursorColor: ManagerColors.primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: ManagerStrings.confirmPassword,
-                  labelStyle: getRegularTextStyle(
-                    fontSize: ManagerFontSizes.s16,
-                    color: ManagerColors.gray,
-                  ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.grayLight),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: ManagerColors.primaryColor),
-                  ),
-                ),
-              ),
-               SizedBox(height: ManagerHeight.h16),
-              Row(
-                children: [
-                  Text(
-                    ManagerStrings.alreadyHaveAccount,
-                    style: getRegularTextStyle(
+    return GetBuilder<AuthController>(builder: (controller) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: ManagerColors.transparent,
+          elevation: 0,
+        ),
+        body: Container(
+          alignment: AlignmentDirectional.centerStart,
+          margin: EdgeInsets.symmetric(horizontal: ManagerWidth.w50),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(height: ManagerHeight.h30),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
+                    ManagerStrings.signUp.toUpperCase(),
+                    style: getBoldTextStyle(
                       color: ManagerColors.black,
-                      fontSize: ManagerFontSizes.s16,
+                      fontSize: ManagerFontSizes.s36,
                     ),
                   ),
-                  SizedBox(width: ManagerWidth.w6),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, Routes.loginView);
-                    },
-                    child: Text(
-                      ManagerStrings.signIn,
-                      style:  getRegularTextStyle(
-                        color: ManagerColors.primaryColor,
+                ),
+                SizedBox(height: ManagerHeight.h30),
+                TextField(
+                  controller: controller.userNameTextEditingController,
+                  cursorColor: ManagerColors.primaryColor,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: ManagerStrings.username,
+                    labelStyle: getRegularTextStyle(
+                        fontSize: ManagerFontSizes.s16,
+                        color: ManagerColors.gray),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.grayLight),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.primaryColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: ManagerHeight.h16),
+                TextField(
+                  controller: controller.emailTextEditingController,
+                  cursorColor: ManagerColors.primaryColor,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: ManagerStrings.email,
+                    labelStyle: getRegularTextStyle(
+                        fontSize: ManagerFontSizes.s16,
+                        color: ManagerColors.gray),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.grayLight),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.primaryColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: ManagerHeight.h16),
+                TextField(
+                  controller: controller.phoneTextEditingController,
+                  cursorColor: ManagerColors.primaryColor,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: ManagerStrings.phone,
+                    labelStyle: getRegularTextStyle(
+                        fontSize: ManagerFontSizes.s16,
+                        color: ManagerColors.gray),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.grayLight),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.primaryColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: ManagerHeight.h16),
+                TextField(
+                  controller: controller.passwordTextEditingController,
+                  cursorColor: ManagerColors.primaryColor,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: ManagerStrings.password,
+                    labelStyle: getRegularTextStyle(
+                      fontSize: ManagerFontSizes.s16,
+                      color: ManagerColors.gray,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.grayLight),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.primaryColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: ManagerHeight.h16),
+                TextField(
+                  controller: controller.confirmPasswordTextEditingController,
+                  cursorColor: ManagerColors.primaryColor,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: ManagerStrings.confirmPassword,
+                    labelStyle: getRegularTextStyle(
+                      fontSize: ManagerFontSizes.s16,
+                      color: ManagerColors.gray,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.grayLight),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: ManagerColors.primaryColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: ManagerHeight.h16),
+                Row(
+                  children: [
+                    Text(
+                      ManagerStrings.alreadyHaveAccount,
+                      style: getRegularTextStyle(
+                        color: ManagerColors.black,
                         fontSize: ManagerFontSizes.s16,
                       ),
                     ),
-                  ),
-                ],
-              ),
-               SizedBox(height: ManagerHeight.h80),
-              BaseButton(
-                onPressed: () {},
-                title: ManagerStrings.register,
-                textStyle: getBoldTextStyle(
-                  color: ManagerColors.white,
-                  fontSize: ManagerFontSizes.s16,
+                    SizedBox(width: ManagerWidth.w6),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                            context, Routes.loginView);
+                      },
+                      child: Text(
+                        ManagerStrings.signIn,
+                        style: getRegularTextStyle(
+                          color: ManagerColors.primaryColor,
+                          fontSize: ManagerFontSizes.s16,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                spacerFlex: 4,
-              ),
-               SizedBox(height: ManagerHeight.h10),
-            ],
+                SizedBox(height: ManagerHeight.h80),
+                BaseButton(
+                  onPressed: () {},
+                  title: ManagerStrings.register,
+                  textStyle: getBoldTextStyle(
+                    color: ManagerColors.white,
+                    fontSize: ManagerFontSizes.s16,
+                  ),
+                  spacerFlex: 4,
+                ),
+                SizedBox(height: ManagerHeight.h10),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
