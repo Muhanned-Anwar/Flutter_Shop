@@ -21,6 +21,7 @@ class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splashScreen:
+        initSplash();
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.outBoardingScreen:
         return MaterialPageRoute(builder: (_) => const OutBoardingScreen());
@@ -32,7 +33,7 @@ class RouteGenerator {
       case Routes.registerView:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.homeView:
-        disposeAuth();
+        initHome();
         return MaterialPageRoute(builder: (_) => const HomeView());
       default:
         return unDefineRoute();

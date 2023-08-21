@@ -16,6 +16,10 @@ class AppSettingsSharedPreferences {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 
+  clear(){
+    _sharedPreferences.clear();
+  }
+
   Future<void> saveViewedOutBoarding() async {
     await _sharedPreferences.setBool(KeyConstants.outBoardingViewedKey, true);
   }
@@ -29,4 +33,18 @@ class AppSettingsSharedPreferences {
 
   String get defaultLocale =>
       _sharedPreferences.getString(KeyConstants.localeKey).parseLocale();
+
+  Future<void> setToken(String token) async {
+    await _sharedPreferences.setString(KeyConstants.token, token);
+  }
+
+  String get defaultToken =>
+      _sharedPreferences.getString(KeyConstants.token).onNull();
+
+  Future<void> setLoggedIn() async {
+    await _sharedPreferences.setBool(KeyConstants.loggedIn, true);
+  }
+
+  bool get loggedIn =>
+      _sharedPreferences.getBool(KeyConstants.loggedIn).onNull();
 }

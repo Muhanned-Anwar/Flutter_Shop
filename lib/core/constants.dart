@@ -19,4 +19,21 @@ class KeyConstants {
   static const String english = 'en';
   static const String arabicName = 'العربية';
   static const String englishName = 'English';
+  static const String token = 'token';
+  static const String loggedIn = 'logged_in';
+}
+
+class ApiRequest {
+  static const String baseUrl = 'https://act-hub-training.actit.ps';
+  static const String api = '$baseUrl/api/auth/user';
+  static const String login = '$api/login';
+}
+
+
+class ApiConstants {
+  static const String email = 'email';
+  static const String password = 'password';
+  static const String acceptLanguage = 'Accept-Language';
+  static const String errorMessage = 'message';
+  static const String token = 'token';
 }
