@@ -10,6 +10,9 @@ class Constants {
   static const int pageViewSliderDuration = 300;
   static const bool baseButtonVisibleIcon = false;
   static const int outBoardingLastPage = 3;
+  static const double dividerThickness = 0.7;
+  static const double dividerIndentDefault = 1;
+  static const double dividerEndIndentDefault = 1;
 }
 
 class KeyConstants {
