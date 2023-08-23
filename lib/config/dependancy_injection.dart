@@ -1,4 +1,5 @@
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
+import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,6 +31,8 @@ disposeAuth() {
 initHome() {
   disposeSplash();
   disposeAuth();
+
+  Get.put<HomeController>(HomeController());
 }
 
 disposeHome() {}
