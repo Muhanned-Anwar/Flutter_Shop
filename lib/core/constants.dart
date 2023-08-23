@@ -24,12 +24,21 @@ class KeyConstants {
   static const String englishName = 'English';
   static const String token = 'token';
   static const String loggedIn = 'logged_in';
+  static const String user = 'user_';
+  static const String userId = '${user}id';
+  static const String userType = '${user}type';
+  static const String userName = '${user}name';
+  static const String userEmail = '${user}email';
+  static const String userAvatar = '${user}avatar';
+  static const String userAvatarOriginal = '${user}avatar_original';
+  static const String userPhone = '${user}phone';
 }
 
 class ApiRequest {
-  static const String baseUrl = 'https://act-hub-training.actit.ps';
-  static const String api = '$baseUrl/api/auth/user';
-  static const String login = '$api/login';
+  static const String baseUrl = 'http://e-commerce-selkroad.actit.ps';
+  static const String api = '$baseUrl/api/v2';
+  static const String apiAuth = '$api/auth';
+  static const String login = '$apiAuth/login';
 }
 
 
