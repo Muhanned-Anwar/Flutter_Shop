@@ -39,12 +39,17 @@ class ApiRequest {
   static const String api = '$baseUrl/api/v2';
   static const String apiAuth = '$api/auth';
   static const String login = '$apiAuth/login';
+  static const String register = '$apiAuth/signup';
 }
 
 
 class ApiConstants {
   static const String email = 'email';
   static const String password = 'password';
+  static const String confirmPassword = 'password_confirmation';
+  static const String authName = 'name';
+  static const String phone = 'phone';
+  static const String registerBy = 'register_by';
   static const String acceptLanguage = 'Accept-Language';
   static const String errorMessage = 'message';
   static const String token = 'token';

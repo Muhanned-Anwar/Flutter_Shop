@@ -69,6 +69,12 @@ class LoginView extends StatelessWidget {
                         borderSide:
                             BorderSide(color: ManagerColors.primaryColor),
                       ),
+                      errorText: controller.emailError,
+                      errorBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ManagerColors.error,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: ManagerHeight.h24),
@@ -88,6 +94,12 @@ class LoginView extends StatelessWidget {
                       focusedBorder: const UnderlineInputBorder(
                         borderSide:
                             BorderSide(color: ManagerColors.primaryColor),
+                      ),
+                      errorText: controller.passwordError,
+                      errorBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ManagerColors.error,
+                        ),
                       ),
                     ),
                   ),
