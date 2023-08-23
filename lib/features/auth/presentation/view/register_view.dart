@@ -55,6 +55,10 @@ class RegisterView extends StatelessWidget {
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: ManagerColors.primaryColor),
                     ),
+                      errorText: controller.nameError ,
+                      errorBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: ManagerColors.error)
+                      )
                   ),
                 ),
                 SizedBox(height: ManagerHeight.h16),
@@ -73,6 +77,10 @@ class RegisterView extends StatelessWidget {
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: ManagerColors.primaryColor),
                     ),
+                      errorText: controller.emailError ,
+                      errorBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: ManagerColors.error)
+                      )
                   ),
                 ),
                 SizedBox(height: ManagerHeight.h16),
@@ -91,6 +99,10 @@ class RegisterView extends StatelessWidget {
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: ManagerColors.primaryColor),
                     ),
+                      errorText: controller.phoneError ,
+                      errorBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: ManagerColors.error)
+                      )
                   ),
                 ),
                 SizedBox(height: ManagerHeight.h16),
@@ -110,6 +122,10 @@ class RegisterView extends StatelessWidget {
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: ManagerColors.primaryColor),
                     ),
+                      errorText: controller.passwordError ,
+                      errorBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: ManagerColors.error)
+                      )
                   ),
                 ),
                 SizedBox(height: ManagerHeight.h16),
@@ -129,6 +145,10 @@ class RegisterView extends StatelessWidget {
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: ManagerColors.primaryColor),
                     ),
+                      errorText: controller.confirmPasswordError ,
+                      errorBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: ManagerColors.error)
+                      )
                   ),
                 ),
                 SizedBox(height: ManagerHeight.h16),
