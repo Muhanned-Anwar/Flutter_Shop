@@ -18,6 +18,18 @@ class AuthController extends GetxController with Helpers {
   String? confirmPasswordError;
   String? nameError;
   String? phoneError;
+  bool showPassword = true;
+  bool showConfirmPassword = true;
+
+  changePasswordVisibility(){
+    showPassword = !showPassword;
+    update();
+  }
+
+  changeConfirmPasswordVisibility(){
+    showConfirmPassword = !showConfirmPassword;
+    update();
+  }
 
   @override
   void onInit() {
@@ -75,6 +87,7 @@ class AuthController extends GetxController with Helpers {
   }
 
   performRegister(BuildContext context) async {
+    resetErrors();
     if (checkRegisterData(context)) {
       showDialog(
           context: context,
@@ -86,20 +99,50 @@ class AuthController extends GetxController with Helpers {
               ),
             );
           });
-      if (await apiController.login(
+      if (await apiController.register(
         email: emailTextEditingController.text.toString(),
         password: passwordTextEditingController.text.toString(),
         context: context,
+        name: userNameTextEditingController.text.toString(),
+        confirmPassword: confirmPasswordTextEditingController.text.toString(),
+        phone: phoneTextEditingController.text.toString(),
       )) {
-        showSnackBar(context: context, message: 'Login Successfully');
+        showSnackBar(context: context, message: 'Register Successfully');
         Get.back();
-        Get.offAllNamed(Routes.homeView);
+        Get.offAllNamed(Routes.loginView);
       }
       Get.back();
     }
+    update();
   }
 
-  bool checkData(BuildContext context) {
+  bool checkName(BuildContext context) {
+    if (userNameTextEditingController.text.isEmpty) {
+      nameError = 'Username is required';
+      showSnackBar(
+        context: context,
+        message: nameError.onNull(),
+        error: true,
+      );
+      return false;
+    }
+    return true;
+  }
+
+  bool checkPhone(BuildContext context) {
+    if (phoneTextEditingController.text.isEmpty) {
+      phoneError = 'Phone is required';
+      showSnackBar(
+        context: context,
+        message: phoneError.onNull(),
+        error: true,
+      );
+      return false;
+    }
+    return true;
+  }
+
+  bool checkEmail(BuildContext context) {
     if (emailTextEditingController.text.isEmpty) {
       emailError = 'Email is required';
       showSnackBar(
@@ -109,7 +152,10 @@ class AuthController extends GetxController with Helpers {
       );
       return false;
     }
+    return true;
+  }
 
+  bool checkPassword(BuildContext context) {
     if (passwordTextEditingController.text.isEmpty) {
       passwordError = 'Password is required';
       showSnackBar(
@@ -132,31 +178,52 @@ class AuthController extends GetxController with Helpers {
     return true;
   }
 
+  bool checkConfirmPassword(BuildContext context) {
+    if (passwordTextEditingController.text !=
+        confirmPasswordTextEditingController.text) {
+      passwordError = 'Password is not matched';
+      confirmPasswordError = passwordError;
+      showSnackBar(
+        context: context,
+        message: passwordError.onNull(),
+        error: true,
+      );
+      return false;
+    }
+
+    return true;
+  }
+
+  bool checkData(BuildContext context) {
+    if (!checkEmail(context)) {
+      return false;
+    }
+
+    if (!checkPassword(context)) {
+      return false;
+    }
+
+    return true;
+  }
+
   bool checkRegisterData(BuildContext context) {
-    if (emailTextEditingController.text.isEmpty) {
-      showSnackBar(
-        context: context,
-        message: 'Email is required',
-        error: true,
-      );
+    if (!checkName(context)) {
       return false;
     }
 
-    if (passwordTextEditingController.text.isEmpty) {
-      showSnackBar(
-        context: context,
-        message: 'Password is required',
-        error: true,
-      );
+    if (!checkEmail(context)) {
       return false;
     }
-    if (passwordTextEditingController.text.length < 6) {
-      showSnackBar(
-        context: context,
-        message: 'Password must be at least 6 characters',
-        error: true,
-      );
 
+    if (!checkPhone(context)) {
+      return false;
+    }
+
+    if (!checkPassword(context)) {
+      return false;
+    }
+
+    if (!checkConfirmPassword(context)) {
       return false;
     }
 
