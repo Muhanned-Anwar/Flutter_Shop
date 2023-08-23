@@ -40,7 +40,7 @@ class AuthApiController with Helpers {
 
     var json = jsonDecode(response.body);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       LoginResponse loginResponse = LoginResponse.fromJson(json);
       LoginModel loginModel = loginResponse.toDomain();
       appSettingsSharedPreferences.setToken(loginModel.accessToken);
@@ -80,7 +80,8 @@ class AuthApiController with Helpers {
 
     var json = jsonDecode(response.body);
 
-    if (response.statusCode == 200) {
+    print(json);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       return true;
     }
 
