@@ -28,5 +28,6 @@
   "confirmPassword": "تاكيد كلمة المرور",
   "register": "تسجيل",
   "login": "تسجيل دخول",
-  "homeView": "Home View"
+  "homeView": "Home View",
+  "home": "الرئيسية"
 }

@@ -28,5 +28,6 @@
   "confirmPassword": "Confirm Password",
   "register": "Register",
   "login": "Login",
-  "homeView": "Home View"
+  "homeView": "Home View",
+  "home": "Home"
 }
