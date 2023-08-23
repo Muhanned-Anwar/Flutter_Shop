@@ -82,7 +82,17 @@ class LoginView extends StatelessWidget {
                     controller: controller.passwordTextEditingController,
                     cursorColor: ManagerColors.primaryColor,
                     keyboardType: TextInputType.emailAddress,
+                    obscureText: controller.showPassword,
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: () => controller.changePasswordVisibility(),
+                        icon: controller.showPassword
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(
+                          Icons.visibility,
+                          color: ManagerColors.primaryColor,
+                        ),
+                      ),
                       labelText: ManagerStrings.password,
                       labelStyle: getRegularTextStyle(
                           fontSize: ManagerFontSizes.s16,
