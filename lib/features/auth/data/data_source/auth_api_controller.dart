@@ -13,19 +13,31 @@ class AuthApiController with Helpers {
   AppSettingsSharedPreferences appSettingsSharedPreferences =
       AppSettingsSharedPreferences();
 
+  Future post({
+    required String endPoint,
+    required Map<String, dynamic> body,
+    required Map<String, String> header,
+  }) async {
+    return await http.post(
+      Uri.parse(endPoint),
+      body: body,
+      headers: header,
+    );
+  }
+
   Future<bool> login({
     required String email,
     required String password,
     required BuildContext context,
   }) async {
-    Uri url = Uri.parse(ApiRequest.login);
-    Response response = await http.post(
-      url,
+    http.Response response = await post(
+      endPoint: ApiRequest.login,
       body: {ApiConstants.email: email, ApiConstants.password: password},
-      headers: {
+      header: {
         ApiConstants.acceptLanguage: appSettingsSharedPreferences.defaultLocale,
       },
     );
+
     var json = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
@@ -34,6 +46,41 @@ class AuthApiController with Helpers {
       appSettingsSharedPreferences.setToken(loginModel.accessToken);
       appSettingsSharedPreferences.saveUserInfo(loginModel.user);
       appSettingsSharedPreferences.setLoggedIn();
+      return true;
+    }
+
+    showSnackBar(
+      context: context,
+      message: json[ApiConstants.errorMessage] ?? 'Error',
+      error: true,
+    );
+    return false;
+  }
+
+  Future<bool> register({
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String name,
+    required String phone,
+    required BuildContext context,
+  }) async {
+    Response response = await post(
+      endPoint: ApiRequest.register,
+      body: {
+        ApiConstants.email: email,
+        ApiConstants.password: password,
+        ApiConstants.confirmPassword: confirmPassword,
+        ApiConstants.authName: name,
+        ApiConstants.phone: phone,
+        ApiConstants.registerBy: 'email',
+      },
+      header: {},
+    );
+
+    var json = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
       return true;
     }
 
