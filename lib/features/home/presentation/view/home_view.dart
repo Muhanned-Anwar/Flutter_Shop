@@ -10,6 +10,8 @@ import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/model/category_model.dart';
+import 'package:avatar_course2_5_shop/features/home/presentation/model/home_model.dart';
+import 'package:avatar_course2_5_shop/features/home/presentation/view/widgets/category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_drawer/slide_drawer.dart';
@@ -34,19 +36,17 @@ class HomeView extends StatelessWidget {
               fontSize: ManagerFontSizes.s18,
             ),
           ),
-          leading: Builder(
-            builder: (context) {
-              return IconButton(
-                onPressed: () {
-                  SlideDrawer.of(context)?.toggle();
-                },
-                icon: const Icon(
-                  Icons.menu,
-                  size: ManagerIconSizes.s30,
-                ),
-              );
-            }
-          ),
+          leading: Builder(builder: (context) {
+            return IconButton(
+              onPressed: () {
+                SlideDrawer.of(context)?.toggle();
+              },
+              icon: const Icon(
+                Icons.menu,
+                size: ManagerIconSizes.s30,
+              ),
+            );
+          }),
           centerTitle: true,
           actions: [
             IconButton(
@@ -77,7 +77,8 @@ class HomeView extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                         color: ManagerColors.white,
-                        borderRadius: BorderRadius.circular(ManagerRadius.r100)),
+                        borderRadius:
+                            BorderRadius.circular(ManagerRadius.r100)),
                     margin: EdgeInsetsDirectional.only(
                       end: ManagerWidth.w20,
                     ),
@@ -107,55 +108,86 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: ManagerHeight.h12),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: ManagerHeight.h100,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller.categories.length,
-                            itemBuilder: (context, index) {
-                              CategoryModel currentCategory =
-                                  controller.categories[index];
-                              return Container(
-                                width: ManagerWidth.w110,
-                                height: ManagerHeight.h100,
-                                margin: EdgeInsetsDirectional.only(
-                                  end: ManagerWidth.w8,
+                  Column(
+                    children: [
+                      categoriesList(controller),
+                      SizedBox(height: ManagerHeight.h20),
+                      Container(
+                        margin:
+                            EdgeInsetsDirectional.only(end: ManagerWidth.w16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Best Items', style: getBoldTextStyle()),
+                            Container(
+                              height: ManagerHeight.h26,
+                              width: ManagerWidth.w80,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  ManagerRadius.r100,
                                 ),
-                                decoration: BoxDecoration(
-                                  color: ManagerColors.white,
-                                  borderRadius: BorderRadius.circular(
-                                    ManagerRadius.r16,
-                                  ),
+                                border: Border.all(
+                                  color: ManagerColors.gray,
                                 ),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Show More',
+                                style: getBoldTextStyle(
+                                  fontSize: ManagerFontSizes.s10,
+                                  color: ManagerColors.gray,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ListView(
+                        shrinkWrap: true,
+                        children: [
+                          Container(
+                            height: ManagerHeight.h450,
+                            width: ManagerWidth.w300,
+                            alignment: Alignment.center,
+                            margin: EdgeInsetsDirectional.only(end: ManagerWidth.w12),
+                            child: GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: controller.homeModel.data.length > 4
+                                  ? 4
+                                  : controller.homeModel.data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                HomeDataModel homeDataModel =
+                                    controller.homeModel.data[index];
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                          currentCategory.banner,
-                                        ),
-                                        radius: ManagerRadius.r24),
-                                    SizedBox(
-                                      height: ManagerHeight.h24,
-                                      child: Text(
-                                        currentCategory.name,
-                                        style: getMediumTextStyle(
-                                          fontSize: ManagerFontSizes.s12,
+                                    Container(
+                                      width: ManagerWidth.w156,
+                                      height: ManagerHeight.h80,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            homeDataModel.thumbnailImage,
+                                          ),
                                         ),
                                       ),
-                                    )
+                                    ),
+                                    Text(homeDataModel.name),
+                                    Text(' \$ ${homeDataModel.basePrice} \kg'),
                                   ],
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+                                );
+                              },
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: ManagerWidth.w10,
+                                mainAxisSpacing: ManagerHeight.h10,
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   )
                 ],
               );
