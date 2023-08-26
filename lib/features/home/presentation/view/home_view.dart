@@ -9,6 +9,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
+import 'package:avatar_course2_5_shop/features/home/presentation/model/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -76,10 +77,13 @@ class HomeView extends StatelessWidget {
                     ),
                     SizedBox(width: ManagerWidth.w16),
                     Expanded(
-                        child: Text(
-                      'Search',
-                      style: getMediumTextStyle(color: ManagerColors.gray),
-                    )),
+                      child: Text(
+                        ManagerStrings.search,
+                        style: getMediumTextStyle(
+                          color: ManagerColors.gray,
+                        ),
+                      ),
+                    ),
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(
@@ -98,13 +102,16 @@ class HomeView extends StatelessWidget {
                       height: ManagerHeight.h100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: 5,
+                        itemCount: controller.categories.length,
                         itemBuilder: (context, index) {
+                          CategoryModel currentCategory =
+                              controller.categories[index];
                           return Container(
-                            width: 100,
-                            height: 100,
+                            width: ManagerWidth.w110,
+                            height: ManagerHeight.h100,
                             margin: EdgeInsetsDirectional.only(
-                                end: ManagerWidth.w8),
+                              end: ManagerWidth.w8,
+                            ),
                             decoration: BoxDecoration(
                               color: ManagerColors.white,
                               borderRadius: BorderRadius.circular(
@@ -114,8 +121,20 @@ class HomeView extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Image.asset(ManagerAssets.category, width: 50, height: 50,),
-                                Text('Name', style: getMediumTextStyle(),)
+                                CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                      currentCategory.banner,
+                                    ),
+                                    radius: ManagerRadius.r24),
+                                SizedBox(
+                                  height: ManagerHeight.h24,
+                                  child: Text(
+                                    currentCategory.name,
+                                    style: getMediumTextStyle(
+                                      fontSize: ManagerFontSizes.s12,
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           );
