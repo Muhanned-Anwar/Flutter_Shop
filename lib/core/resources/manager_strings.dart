@@ -32,5 +32,6 @@ class ManagerStrings {
   static String get login => tr('login');
   static String get homeView => tr('homeView');
   static String get home => tr('home');
+  static String get search => tr('search');
 }
 
