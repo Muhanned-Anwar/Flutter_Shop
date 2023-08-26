@@ -4,7 +4,7 @@ class CategoryResponse {
   String? banner;
   String? icon;
   int? numberOfChildren;
-  Links? links;
+  CategoryResponseLinks? links;
 
   CategoryResponse({
     this.id,
@@ -21,7 +21,7 @@ class CategoryResponse {
     banner = json['banner'];
     icon = json['icon'];
     numberOfChildren = json['number_of_children'];
-    links = json['links'] != null ? Links.fromJson(json['links']) : null;
+    links = json['links'] != null ? CategoryResponseLinks.fromJson(json['links']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -38,13 +38,13 @@ class CategoryResponse {
   }
 }
 
-class Links {
+class CategoryResponseLinks {
   String? products;
   String? subCategories;
 
-  Links({this.products, this.subCategories});
+  CategoryResponseLinks({this.products, this.subCategories});
 
-  Links.fromJson(Map<String, dynamic> json) {
+  CategoryResponseLinks.fromJson(Map<String, dynamic> json) {
     products = json['products'];
     subCategories = json['sub_categories'];
   }
