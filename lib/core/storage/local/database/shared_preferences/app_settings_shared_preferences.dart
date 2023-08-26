@@ -71,6 +71,12 @@ class AppSettingsSharedPreferences {
     );
   }
 
+  String get userName =>
+      _sharedPreferences.getString(KeyConstants.userName).onNull();
+
+  String get userEmail =>
+      _sharedPreferences.getString(KeyConstants.userEmail).onNull();
+
   String get defaultToken =>
       _sharedPreferences.getString(KeyConstants.token).onNull();
 
