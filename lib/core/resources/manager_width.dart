@@ -17,6 +17,7 @@ class ManagerWidth {
   static double w64 = SizeUtil.setWidth(64);
   static double w80 = SizeUtil.setWidth(80);
   static double w100 = SizeUtil.setWidth(100);
+  static double w110 = SizeUtil.setWidth(110);
   static double w120 = SizeUtil.setWidth(120);
   static double w200 = SizeUtil.setWidth(200);
 }

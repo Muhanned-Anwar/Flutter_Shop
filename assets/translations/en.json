@@ -29,5 +29,6 @@
   "register": "Register",
   "login": "Login",
   "homeView": "Home View",
-  "home": "Home"
+  "home": "Home",
+  "search": "Search"
 }
