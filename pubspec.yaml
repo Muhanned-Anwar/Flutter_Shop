@@ -40,6 +40,7 @@ dependencies:
   easy_localization: ^3.0.2
   flutter_screenutil: ^5.8.4
   http: ^1.1.0
+  slide_drawer: ^1.0.3
 
 dev_dependencies:
   flutter_test:
