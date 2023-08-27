@@ -142,6 +142,7 @@ class HomeView extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(height: ManagerHeight.h14),
                       ListView(
                         shrinkWrap: true,
                         children: [
@@ -149,7 +150,9 @@ class HomeView extends StatelessWidget {
                             height: ManagerHeight.h450,
                             width: ManagerWidth.w300,
                             alignment: Alignment.center,
-                            margin: EdgeInsetsDirectional.only(end: ManagerWidth.w12),
+                            margin: EdgeInsetsDirectional.only(
+                              end: ManagerWidth.w12,
+                            ),
                             child: GridView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: controller.homeModel.data.length > 4
@@ -162,13 +165,15 @@ class HomeView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: ManagerWidth.w156,
-                                      height: ManagerHeight.h80,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            homeDataModel.thumbnailImage,
-                                          ),
+                                      alignment: Alignment.center,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                          ManagerRadius.r10,
+                                        ),
+                                        child: controller.image(
+                                          courseAvatar: homeDataModel
+                                              .thumbnailImage
+                                              .toString(),
                                         ),
                                       ),
                                     ),
