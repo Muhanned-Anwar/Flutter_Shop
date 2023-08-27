@@ -1,7 +1,12 @@
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
 import 'package:avatar_course2_5_shop/features/home/data/data_source/home_api_controller.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/model/home_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/resources/manager_assets.dart';
+import '../../../../core/resources/manager_height.dart';
+import '../../../../core/resources/manager_width.dart';
 import '../model/category_model.dart';
 
 class HomeController extends GetxController {
@@ -37,5 +42,23 @@ class HomeController extends GetxController {
       }
     });
     update();
+  }
+
+  Widget image({required String courseAvatar, String? defaultImage}) {
+    if (isURLValid(courseAvatar)) {
+      return Image.network(
+        courseAvatar,
+        fit: BoxFit.fill,
+        width: ManagerWidth.w130,
+        height: ManagerHeight.h130,
+      );
+    }
+
+    return Image.asset(
+      defaultImage ?? ManagerAssets.product,
+      fit: BoxFit.fill,
+      width: ManagerWidth.w156,
+      height: ManagerHeight.h148,
+    );
   }
 }
