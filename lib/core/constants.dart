@@ -56,3 +56,9 @@ class ApiConstants {
   static const String errorMessage = 'message';
   static const String token = 'token';
 }
+
+
+bool isURLValid(String url) {
+  Uri? uri = Uri.tryParse(url);
+  return uri != null && uri.isAbsolute;
+}
