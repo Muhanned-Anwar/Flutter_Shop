@@ -1,8 +1,6 @@
-import 'package:avatar_course2_5_shop/core/constants.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
-import 'package:avatar_course2_5_shop/core/resources/manager_icon_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_raduis.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
@@ -14,6 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_drawer/slide_drawer.dart';
 import '../../../../core/widgets/slider_drawer.dart';
+import 'widgets/home_app_bar.dart';
+import 'widgets/product_card_item.dart';
+import 'widgets/section_title.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -42,43 +43,9 @@ class HomeView extends StatelessWidget {
                         children: [
                           categoriesList(controller),
                           SizedBox(height: ManagerHeight.h20),
+                          sectionTitle(),
                           Container(
-                            margin: EdgeInsetsDirectional.only(
-                              end: ManagerWidth.w16,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  ManagerStrings.bestItems,
-                                  style: getBoldTextStyle(),
-                                ),
-                                Container(
-                                  height: ManagerHeight.h26,
-                                  width: ManagerWidth.w80,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      ManagerRadius.r100,
-                                    ),
-                                    border: Border.all(
-                                      color: ManagerColors.gray,
-                                    ),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    ManagerStrings.showMore,
-                                    style: getBoldTextStyle(
-                                      fontSize: ManagerFontSizes.s10,
-                                      color: ManagerColors.gray,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: ManagerHeight.h14),
-                          Container(
-                            height: ManagerHeight.h450,
+                            height: ManagerHeight.h320,
                             width: ManagerWidth.w300,
                             alignment: Alignment.center,
                             margin: EdgeInsetsDirectional.only(
@@ -92,56 +59,64 @@ class HomeView extends StatelessWidget {
                               itemBuilder: (BuildContext context, int index) {
                                 HomeDataModel homeDataModel =
                                     controller.homeModel.data[index];
-                                return LayoutBuilder(
-                                  builder: (
-                                    BuildContext context,
-                                    BoxConstraints constraints,
-                                  ) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          flex: 5,
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(
-                                              ManagerRadius.r10,
-                                            ),
-                                            child: controller.image(
-                                              courseAvatar: homeDataModel
-                                                  .thumbnailImage
-                                                  .toString(),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 2,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                homeDataModel.name,
-                                                style: getMediumTextStyle(),
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                              ),
-                                              Text(
-                                                controller.productPrice(
-                                                  homeDataModel.basePrice
-                                                      .toString(),
-                                                ),
-                                                style: getMediumTextStyle(
-                                                  fontSize:
-                                                      ManagerFontSizes.s12,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    );
+                                return InkWell(
+                                  onTap: () {
+                                    controller.productDetails(context);
                                   },
+                                  child: LayoutBuilder(
+                                    builder: (
+                                      BuildContext context,
+                                      BoxConstraints constraints,
+                                    ) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            flex: 5,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                ManagerRadius.r10,
+                                              ),
+                                              child: controller.image(
+                                                courseAvatar: homeDataModel
+                                                    .thumbnailImage
+                                                    .toString(),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  homeDataModel.name,
+                                                  style: getMediumTextStyle(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                ),
+                                                Text(
+                                                  controller.productPrice(
+                                                    homeDataModel.basePrice
+                                                        .toString(),
+                                                      homeDataModel.unit
+                                                  ),
+                                                  style: getMediumTextStyle(
+                                                    fontSize:
+                                                        ManagerFontSizes.s12,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 );
                               },
                               gridDelegate:
@@ -152,8 +127,56 @@ class HomeView extends StatelessWidget {
                               ),
                             ),
                           ),
+
+                          // Features Items In GridView
+                          sectionTitle(
+                            title: ManagerStrings.features,
+                          ),
+                          Container(
+                            height: ManagerHeight.h210,
+                            margin: const EdgeInsets.only(left: 20),
+                            child: GridView.builder(
+                              scrollDirection: Axis.horizontal,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisSpacing: 0,
+                                childAspectRatio: 1.35,
+                              ),
+                              itemBuilder: (context, index) {
+                                HomeDataModel item =
+                                    controller.featuredProducts[index];
+                                return ProductCardItem(item: item);
+                              },
+                              itemCount: controller.featuredProducts.length,
+                            ),
+                          ),
+
+                          // Discounted Items In GridView
+                          sectionTitle(
+                            title: ManagerStrings.discounted,
+                          ),
+                          Container(
+                            height: ManagerHeight.h210,
+                            margin: const EdgeInsets.only(left: 20),
+                            child: GridView.builder(
+                              scrollDirection: Axis.horizontal,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisSpacing: 0,
+                                childAspectRatio: 1.35,
+                              ),
+                              itemBuilder: (context, index) {
+                                HomeDataModel item =
+                                    controller.discountedProducts[index];
+                                return ProductCardItem(item: item);
+                              },
+                              itemCount: controller.discountedProducts.length,
+                            ),
+                          ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                   Container(
@@ -200,58 +223,4 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-}
-
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final AppBar appBar;
-
-  const HomeAppBar({
-    super.key,
-    required this.appBar,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: ManagerColors.transparent,
-      elevation: Constants.appBarElevation,
-      title: Text(
-        ManagerStrings.home.toUpperCase(),
-        style: getBoldTextStyle(
-          fontSize: ManagerFontSizes.s18,
-        ),
-      ),
-      leading: Builder(builder: (context) {
-        return IconButton(
-          onPressed: () {
-            SlideDrawer.of(context)?.toggle();
-          },
-          icon: const Icon(
-            Icons.menu,
-            size: ManagerIconSizes.s30,
-          ),
-        );
-      }),
-      centerTitle: true,
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.qr_code_scanner,
-            size: ManagerIconSizes.s30,
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.remove_shopping_cart,
-            size: ManagerIconSizes.s30,
-          ),
-        ),
-      ],
-    );
-  }
-
-  @override
-  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
