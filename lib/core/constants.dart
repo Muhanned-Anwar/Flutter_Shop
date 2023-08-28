@@ -46,13 +46,20 @@ class ApiRequest {
 
 
 class ApiConstants {
+  static const String authorization = 'Authorization';
+  static const String applicationJson = 'application/json';
+  static const String accept = 'Accept';
+  static const String contentType = 'Content-Type';
+  static const String acceptLanguage = 'Accept-Language';
+  static const int sendTimeout = 120;
+  static const int receiveTimeout = 60;
+  static const String bearer = 'Bearer';
   static const String email = 'email';
   static const String password = 'password';
   static const String confirmPassword = 'password_confirmation';
   static const String authName = 'name';
   static const String phone = 'phone';
   static const String registerBy = 'register_by';
-  static const String acceptLanguage = 'Accept-Language';
   static const String errorMessage = 'message';
   static const String token = 'token';
 }
