@@ -17,70 +17,67 @@ class ProductCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: GetBuilder<HomeController>(
-          builder: (controller) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment:
-              CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  item.thumbnailImage,
-                  fit: BoxFit.cover,
-                  width: ManagerWidth.w130,
-                  height: ManagerHeight.h120,
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  item.name,
-                  style: getMediumTextStyle(),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  controller.productPrice(
-                      item.basePrice.toString(),
-                      item.unit
+    return GetBuilder<HomeController>(builder: (controller) {
+      return InkWell(
+        onTap: () {
+          controller.productDetails(context);
+        },
+        child: Container(
+          margin: EdgeInsets.zero,
+          padding: EdgeInsets.zero,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                item.thumbnailImage,
+                fit: BoxFit.cover,
+                width: ManagerWidth.w130,
+                height: ManagerHeight.h120,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                item.name,
+                style: getMediumTextStyle(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+              Text(
+                controller.productPrice(item.basePrice.toString(), item.unit),
+                style: getMediumTextStyle(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                    size: 16,
                   ),
-                  style: getMediumTextStyle(),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment:
-                  MainAxisAlignment.start,
-                  crossAxisAlignment:
-                  CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 16,
+                  Text(
+                    controller.productRating(
+                      item.rating.toString(),
                     ),
-                    Text(
-                      controller.productRating(
-                        item.rating.toString(),
-                      ),
-                      style: getMediumTextStyle(
-                        fontSize: ManagerFontSizes.s12,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+                    style: getMediumTextStyle(
+                      fontSize: ManagerFontSizes.s12,
                     ),
-                  ],
-                )
-              ],
-            );
-          }
-      ),
-    );
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
