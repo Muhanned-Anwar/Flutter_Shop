@@ -1,20 +1,20 @@
-import 'package:avatar_course2_5_shop/core/constants.dart';
-import 'package:avatar_course2_5_shop/core/resources/manager_assets.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
-import 'package:avatar_course2_5_shop/core/resources/manager_icon_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_raduis.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
-import 'package:avatar_course2_5_shop/features/home/presentation/model/category_model.dart';
+import 'package:avatar_course2_5_shop/features/home/presentation/model/home_model.dart';
+import 'package:avatar_course2_5_shop/features/home/presentation/view/widgets/category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_drawer/slide_drawer.dart';
-
 import '../../../../core/widgets/slider_drawer.dart';
+import 'widgets/home_app_bar.dart';
+import 'widgets/product_card_item.dart';
+import 'widgets/section_title.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -25,45 +25,8 @@ class HomeView extends StatelessWidget {
       drawer: const SliderDrawer(),
       child: Scaffold(
         backgroundColor: ManagerColors.homeScaffoldBackGround,
-        appBar: AppBar(
-          backgroundColor: ManagerColors.transparent,
-          elevation: Constants.appBarElevation,
-          title: Text(
-            ManagerStrings.home.toUpperCase(),
-            style: getBoldTextStyle(
-              fontSize: ManagerFontSizes.s18,
-            ),
-          ),
-          leading: Builder(
-            builder: (context) {
-              return IconButton(
-                onPressed: () {
-                  SlideDrawer.of(context)?.toggle();
-                },
-                icon: const Icon(
-                  Icons.menu,
-                  size: ManagerIconSizes.s30,
-                ),
-              );
-            }
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.qr_code_scanner,
-                size: ManagerIconSizes.s30,
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.remove_shopping_cart,
-                size: ManagerIconSizes.s30,
-              ),
-            ),
-          ],
+        appBar: HomeAppBar(
+          appBar: AppBar(),
         ),
         body: Container(
           margin: EdgeInsetsDirectional.only(
@@ -71,15 +34,161 @@ class HomeView extends StatelessWidget {
           ),
           child: GetBuilder<HomeController>(
             builder: (controller) {
-              return Column(
+              return Stack(
                 children: [
-                  SizedBox(height: ManagerHeight.h12),
+                  ListView(
+                    children: [
+                      SizedBox(height: ManagerHeight.h56),
+                      Column(
+                        children: [
+                          categoriesList(controller),
+                          SizedBox(height: ManagerHeight.h20),
+                          sectionTitle(),
+                          Container(
+                            height: ManagerHeight.h320,
+                            width: ManagerWidth.w300,
+                            alignment: Alignment.center,
+                            margin: EdgeInsetsDirectional.only(
+                              end: ManagerWidth.w12,
+                            ),
+                            child: GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: controller.bestItemsCard(
+                                controller.homeModel.data.length,
+                              ),
+                              itemBuilder: (BuildContext context, int index) {
+                                HomeDataModel homeDataModel =
+                                    controller.homeModel.data[index];
+                                return InkWell(
+                                  onTap: () {
+                                    controller.productDetails(context);
+                                  },
+                                  child: LayoutBuilder(
+                                    builder: (
+                                      BuildContext context,
+                                      BoxConstraints constraints,
+                                    ) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            flex: 5,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                ManagerRadius.r10,
+                                              ),
+                                              child: controller.image(
+                                                courseAvatar: homeDataModel
+                                                    .thumbnailImage
+                                                    .toString(),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  homeDataModel.name,
+                                                  style: getMediumTextStyle(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                ),
+                                                Text(
+                                                  controller.productPrice(
+                                                    homeDataModel.basePrice
+                                                        .toString(),
+                                                      homeDataModel.unit
+                                                  ),
+                                                  style: getMediumTextStyle(
+                                                    fontSize:
+                                                        ManagerFontSizes.s12,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: ManagerWidth.w10,
+                                mainAxisSpacing: ManagerHeight.h10,
+                              ),
+                            ),
+                          ),
+
+                          // Features Items In GridView
+                          sectionTitle(
+                            title: ManagerStrings.features,
+                          ),
+                          Container(
+                            height: ManagerHeight.h210,
+                            margin: const EdgeInsets.only(left: 20),
+                            child: GridView.builder(
+                              scrollDirection: Axis.horizontal,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisSpacing: 0,
+                                childAspectRatio: 1.35,
+                              ),
+                              itemBuilder: (context, index) {
+                                HomeDataModel item =
+                                    controller.featuredProducts[index];
+                                return ProductCardItem(item: item);
+                              },
+                              itemCount: controller.featuredProducts.length,
+                            ),
+                          ),
+
+                          // Discounted Items In GridView
+                          sectionTitle(
+                            title: ManagerStrings.discounted,
+                          ),
+                          Container(
+                            height: ManagerHeight.h210,
+                            margin: const EdgeInsets.only(left: 20),
+                            child: GridView.builder(
+                              scrollDirection: Axis.horizontal,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisSpacing: 0,
+                                childAspectRatio: 1.35,
+                              ),
+                              itemBuilder: (context, index) {
+                                HomeDataModel item =
+                                    controller.discountedProducts[index];
+                                return ProductCardItem(item: item);
+                              },
+                              itemCount: controller.discountedProducts.length,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   Container(
                     decoration: BoxDecoration(
-                        color: ManagerColors.white,
-                        borderRadius: BorderRadius.circular(ManagerRadius.r100)),
+                      color: ManagerColors.white,
+                      borderRadius: BorderRadius.circular(
+                        ManagerRadius.r100,
+                      ),
+                    ),
                     margin: EdgeInsetsDirectional.only(
                       end: ManagerWidth.w20,
+                      top: ManagerHeight.h4,
                     ),
                     child: Row(
                       children: [
@@ -106,57 +215,6 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: ManagerHeight.h12),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: ManagerHeight.h100,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller.categories.length,
-                            itemBuilder: (context, index) {
-                              CategoryModel currentCategory =
-                                  controller.categories[index];
-                              return Container(
-                                width: ManagerWidth.w110,
-                                height: ManagerHeight.h100,
-                                margin: EdgeInsetsDirectional.only(
-                                  end: ManagerWidth.w8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: ManagerColors.white,
-                                  borderRadius: BorderRadius.circular(
-                                    ManagerRadius.r16,
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                          currentCategory.banner,
-                                        ),
-                                        radius: ManagerRadius.r24),
-                                    SizedBox(
-                                      height: ManagerHeight.h24,
-                                      child: Text(
-                                        currentCategory.name,
-                                        style: getMediumTextStyle(
-                                          fontSize: ManagerFontSizes.s12,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
                 ],
               );
             },

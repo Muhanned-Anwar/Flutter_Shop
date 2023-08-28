@@ -41,6 +41,7 @@ class ApiRequest {
   static const String login = '$apiAuth/login';
   static const String register = '$apiAuth/signup';
   static const String categories = '$api/categories';
+  static const String home = '$api/products/home';
 }
 
 
@@ -54,4 +55,10 @@ class ApiConstants {
   static const String acceptLanguage = 'Accept-Language';
   static const String errorMessage = 'message';
   static const String token = 'token';
+}
+
+
+bool isURLValid(String url) {
+  Uri? uri = Uri.tryParse(url);
+  return uri != null && uri.isAbsolute;
 }

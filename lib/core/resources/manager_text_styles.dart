@@ -66,6 +66,19 @@ TextStyle getMediumTextStyle({
   );
 }
 
+TextStyle getTextStyle(
+    {double? fontSize,
+    Color? color,
+    TextDecoration? textDecoration,
+    FontWeight? fontWeight}) {
+  return _getTextStyle(
+    fontSize: fontSize ?? ManagerFontSizes.s14,
+    fontWeight: fontWeight ?? ManagerFontWeight.regular,
+    color: color,
+    textDecoration: textDecoration,
+  );
+}
+
 // Italic text style
 TextStyle getItalicTextStyle({
   double? fontSize,

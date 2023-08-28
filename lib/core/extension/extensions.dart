@@ -8,6 +8,16 @@ extension NonNullInt on int? {
   }
 }
 
+extension NonNullDouble on double? {
+  double onNull() {
+    if (this == null) {
+      return 0;
+    } else {
+      return this!;
+    }
+  }
+}
+
 extension NonNullString on String? {
   String onNull() {
     if (this == null) {
@@ -20,6 +30,16 @@ extension NonNullString on String? {
   String parseLocale() {
     if (this == null) {
       return 'en';
+    } else {
+      return this!;
+    }
+  }
+}
+
+extension NonNullListString on List<String>? {
+  List<String> onNull() {
+    if (this == null) {
+      return [];
     } else {
       return this!;
     }
