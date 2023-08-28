@@ -1,6 +1,7 @@
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
 import 'package:avatar_course2_5_shop/features/home/data/data_source/home_api_controller.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/model/home_model.dart';
+import 'package:avatar_course2_5_shop/route/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constants.dart';
@@ -32,15 +33,15 @@ class HomeController extends GetxController {
 
   readHome() async {
     homeModel = await homeApiController.home(context: Get.context!);
-    homeModel.data.map((e) {
-      if (e.featured == 1) {
-        featuredProducts.add(e);
+    for(HomeDataModel item in homeModel.data){
+      if (item.featured == 1) {
+        featuredProducts.add(item);
       }
 
-      if (e.discount > 0) {
-        discountedProducts.add(e);
+      if (item.discount > 0) {
+        discountedProducts.add(item);
       }
-    });
+    }
     update();
   }
 
@@ -61,11 +62,19 @@ class HomeController extends GetxController {
     );
   }
 
-  String productPrice(String price) {
-    return ' \$ $price \\kg';
+  String productPrice(String price, String unit) {
+    return ' \$ $price \\$unit'.toUpperCase();
+  }
+
+  String productRating(String rate) {
+    return '($rate)';
   }
 
   int bestItemsCard(int length) {
     return length > 4 ? 4 : length;
+  }
+
+  productDetails(BuildContext context){
+    Navigator.pushNamed(context, Routes.itemDetails);
   }
 }
