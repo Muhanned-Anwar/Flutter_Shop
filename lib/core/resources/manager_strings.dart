@@ -33,5 +33,7 @@ class ManagerStrings {
   static String get homeView => tr('homeView');
   static String get home => tr('home');
   static String get search => tr('search');
+  static String get showMore => tr('Show More');
+  static String get bestItems => tr('Best Items');
 }
 
