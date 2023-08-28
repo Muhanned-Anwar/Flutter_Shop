@@ -5,6 +5,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:slide_drawer/slide_drawer.dart';
 
 class SliderDrawer extends StatelessWidget {
   const SliderDrawer({Key? key}) : super(key: key);
@@ -14,12 +15,24 @@ class SliderDrawer extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         backgroundColor: ManagerColors.primaryColor,
-        body: Container(
+        body: SizedBox(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Spacer(),
+
+              SizedBox(height: ManagerHeight.h50,),
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: IconButton(
+                  onPressed: () {
+                    SlideDrawer.of(context)?.close();
+                  },
+                  icon: const Icon(
+                    Icons.exit_to_app,
+                  ),
+                ),
+              ),
               Text(
                 controller.appSettingsSharedPreferences.userName,
                 style: getBoldTextStyle(
@@ -35,7 +48,7 @@ class SliderDrawer extends StatelessWidget {
                   color: ManagerColors.white,
                 ),
               ),
-              const Spacer(flex: 9),
+              const Spacer(),
             ],
           ),
         ),
