@@ -49,8 +49,7 @@ class HomeController extends GetxController {
       return Image.network(
         courseAvatar,
         fit: BoxFit.fill,
-        width: ManagerWidth.w130,
-        height: ManagerHeight.h130,
+        width: double.infinity,
       );
     }
 
@@ -60,5 +59,13 @@ class HomeController extends GetxController {
       width: ManagerWidth.w156,
       height: ManagerHeight.h148,
     );
+  }
+
+  String productPrice(String price) {
+    return ' \$ $price \\kg';
+  }
+
+  int bestItemsCard(int length) {
+    return length > 4 ? 4 : length;
   }
 }
