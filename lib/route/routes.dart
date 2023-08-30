@@ -1,7 +1,7 @@
 import 'package:avatar_course2_5_shop/config/dependancy_injection.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/features/auth/presentation/view/register_view.dart';
-import 'package:avatar_course2_5_shop/features/home/presentation/view/item_details_view.dart';
+import 'package:avatar_course2_5_shop/features/product_details/presentation/view/item_details_view.dart';
 import 'package:flutter/material.dart';
 import '../features/auth/presentation/view/authentication_view.dart';
 import '../features/auth/presentation/view/login_view.dart';

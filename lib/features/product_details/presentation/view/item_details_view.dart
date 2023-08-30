@@ -9,7 +9,7 @@ import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/page_view_indicator.dart';
-import '../model/review.dart';
+import '../../../home/presentation/model/review.dart';
 
 class ItemDetails extends StatefulWidget {
   const ItemDetails({Key? key}) : super(key: key);
