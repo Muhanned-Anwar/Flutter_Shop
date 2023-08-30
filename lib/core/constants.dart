@@ -42,6 +42,7 @@ class ApiRequest {
   static const String register = '$apiAuth/signup';
   static const String categories = '$api/categories';
   static const String home = '$api/products/home';
+  static const String productDetails = '$api/product/{id}';
 }
 
 
