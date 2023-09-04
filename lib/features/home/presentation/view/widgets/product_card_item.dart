@@ -20,7 +20,7 @@ class ProductCardItem extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return InkWell(
         onTap: () {
-          controller.productDetails(context);
+          controller.productDetails(context, item.id);
         },
         child: Container(
           margin: EdgeInsets.zero,
