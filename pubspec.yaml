@@ -49,6 +49,7 @@ dependencies:
   get_it: ^7.6.0
   internet_connection_checker_plus: ^1.0.1
   dartz: ^0.10.1
+  flutter_state_render_dialog: ^1.0.5
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,7 @@ flutter:
     - assets/images/auth/
     - assets/images/home/
     - assets/translations/
+    - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

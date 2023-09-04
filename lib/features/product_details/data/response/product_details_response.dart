@@ -10,7 +10,7 @@ class ProductDetailsResponse {
   @JsonKey(name: 'status')
   int? status;
   @JsonKey(name: 'success')
-  String? success;
+  bool? success;
 
   ProductDetailsResponse({
     required this.data,

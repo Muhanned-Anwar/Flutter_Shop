@@ -1,8 +1,12 @@
+import 'package:avatar_course2_5_shop/config/dependancy_injection.dart';
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
 import 'package:avatar_course2_5_shop/features/home/data/data_source/home_api_controller.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/model/home_model.dart';
+import 'package:avatar_course2_5_shop/features/product_details/domain/model/product_details_model.dart';
+import 'package:avatar_course2_5_shop/features/product_details/domain/use_case/product_details_use_case.dart';
 import 'package:avatar_course2_5_shop/route/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
 import '../../../../core/constants.dart';
 import '../../../../core/resources/manager_assets.dart';
@@ -13,11 +17,15 @@ import '../model/category_model.dart';
 class HomeController extends GetxController {
   List<CategoryModel> categories = [];
   HomeModel homeModel = HomeModel(data: [], success: true, status: 200);
+  ProductDetailsModel productDetailsModel =
+      ProductDetailsModel(data: [], success: true, status: 200);
   HomeApiController homeApiController = HomeApiController();
   AppSettingsSharedPreferences appSettingsSharedPreferences =
       AppSettingsSharedPreferences();
   List<HomeDataModel> featuredProducts = [];
   List<HomeDataModel> discountedProducts = [];
+  ProductDetailsUseCaseImplementation productDetailsUseCase =
+      instance<ProductDetailsUseCaseImplementation>();
 
   @override
   void onInit() {
@@ -33,7 +41,7 @@ class HomeController extends GetxController {
 
   readHome() async {
     homeModel = await homeApiController.home(context: Get.context!);
-    for(HomeDataModel item in homeModel.data){
+    for (HomeDataModel item in homeModel.data) {
       if (item.featured == 1) {
         featuredProducts.add(item);
       }
@@ -42,6 +50,22 @@ class HomeController extends GetxController {
         discountedProducts.add(item);
       }
     }
+    update();
+  }
+
+  readProductDetails(int id) async {
+    BuildContext context = Get.context!;
+    (await productDetailsUseCase.execute(ProductDetailsUseCaseInput(id: id)))
+        .fold((l) {
+      dialogRender(
+        context: context,
+        stateRenderType: StateRenderType.popUpErrorState,
+        message: l.message,
+        title: '',
+      );
+    }, (r) {
+      productDetailsModel = r;
+    });
     update();
   }
 
@@ -74,7 +98,8 @@ class HomeController extends GetxController {
     return length > 4 ? 4 : length;
   }
 
-  productDetails(BuildContext context){
+  productDetails(BuildContext context, int productId) {
+    readProductDetails(productId);
     Navigator.pushNamed(context, Routes.itemDetails);
   }
 }
