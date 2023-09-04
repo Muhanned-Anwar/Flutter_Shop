@@ -6,6 +6,14 @@ extension NonNullInt on int? {
       return this!;
     }
   }
+
+  int parseError() {
+    if (this == null) {
+      return 400;
+    } else {
+      return this!;
+    }
+  }
 }
 
 extension NonNullDouble on double? {

@@ -21,7 +21,7 @@ class _AppApi implements AppApi {
   String? baseUrl;
 
   @override
-  Future<ProductDetailsResponse> productDetails() async {
+  Future<ProductDetailsResponse> productDetails(int id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +34,7 @@ class _AppApi implements AppApi {
     )
             .compose(
               _dio.options,
-              'http://e-commerce-selkroad.actit.ps/api/v2/product/{id}',
+              'http://e-commerce-selkroad.actit.ps/api/v2/product/id',
               queryParameters: queryParameters,
               data: _data,
             )
