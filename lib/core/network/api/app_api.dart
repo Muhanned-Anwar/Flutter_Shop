@@ -9,7 +9,7 @@ part 'app_api.g.dart';
 @RestApi(baseUrl: ApiRequest.baseUrl)
 abstract class AppApi {
   factory AppApi(Dio dio, {String baseUrl}) = _AppApi;
-  
+
   @GET(ApiRequest.productDetails)
-  Future<ProductDetailsResponse> productDetails();
+  Future<ProductDetailsResponse> productDetails(@Path(ApiConstants.id) int id);
 }
