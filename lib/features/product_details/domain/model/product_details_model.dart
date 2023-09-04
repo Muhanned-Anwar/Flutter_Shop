@@ -3,7 +3,7 @@ import 'product_details_data_model.dart';
 class ProductDetailsModel {
   List<ProductDetailsDataModel> data;
   int status;
-  String success;
+  bool success;
 
   ProductDetailsModel({
     required this.data,

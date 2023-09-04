@@ -14,7 +14,7 @@ ProductDetailsResponse _$ProductDetailsResponseFromJson(
               ProductDetailsDataResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
       status: json['status'] as int?,
-      success: json['success'] as String?,
+      success: json['success'] as bool?,
     );
 
 Map<String, dynamic> _$ProductDetailsResponseToJson(
