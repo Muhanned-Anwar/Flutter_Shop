@@ -82,4 +82,6 @@ class ManagerStrings {
   static String get addToCart => tr('addToCart');
 
   static String get error => tr('error');
+
+  static String get ok => tr('ok');
 }

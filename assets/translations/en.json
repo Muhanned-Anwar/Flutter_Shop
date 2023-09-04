@@ -36,5 +36,6 @@
   "features": "Features",
   "discounted": "Discounted",
   "spray": "spray",
-  "error": "Error"
+  "error": "Error",
+  "ok": "Ok"
 }
