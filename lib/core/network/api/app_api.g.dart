@@ -34,7 +34,7 @@ class _AppApi implements AppApi {
     )
             .compose(
               _dio.options,
-              'http://e-commerce-selkroad.actit.ps/api/v2/product/id',
+              'http://e-commerce-selkroad.actit.ps/api/v2/products/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
