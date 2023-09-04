@@ -42,7 +42,7 @@ class ApiRequest {
   static const String register = '$apiAuth/signup';
   static const String categories = '$api/categories';
   static const String home = '$api/products/home';
-  static const String productDetails = '$api/product/{id}';
+  static const String productDetails = '$api/product/${ApiConstants.id}';
 }
 
 
@@ -63,6 +63,7 @@ class ApiConstants {
   static const String registerBy = 'register_by';
   static const String errorMessage = 'message';
   static const String token = 'token';
+  static const String id = 'id';
 }
 
 
