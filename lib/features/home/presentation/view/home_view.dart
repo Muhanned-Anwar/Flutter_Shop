@@ -61,7 +61,7 @@ class HomeView extends StatelessWidget {
                                     controller.homeModel.data[index];
                                 return InkWell(
                                   onTap: () {
-                                    controller.productDetails(context);
+                                    controller.productDetails(context, homeDataModel.id);
                                   },
                                   child: LayoutBuilder(
                                     builder: (
