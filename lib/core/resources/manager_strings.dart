@@ -78,5 +78,8 @@ class ManagerStrings {
   static String get spray => tr('spray');
 
   static String get checkout => tr('checkout');
+
   static String get addToCart => tr('addToCart');
+
+  static String get error => tr('error');
 }
