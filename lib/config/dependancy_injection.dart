@@ -3,6 +3,9 @@ import 'package:avatar_course2_5_shop/core/network/api/app_api.dart';
 import 'package:avatar_course2_5_shop/core/network/api/dio_factory.dart';
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
+import 'package:avatar_course2_5_shop/features/product_details/data/data_source/remote_data_source.dart';
+import 'package:avatar_course2_5_shop/features/product_details/domain/repository/product_dertails_repository.dart';
+import 'package:avatar_course2_5_shop/features/product_details/domain/use_case/product_details_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -59,8 +62,38 @@ disposeAuth() {
 initHome() {
   disposeSplash();
   disposeAuth();
+  initProductDetails();
 
   Get.put<HomeController>(HomeController());
 }
 
 disposeHome() {}
+
+initProductDetails() {
+  if (!GetIt.I.isRegistered<ProductDetailsRemoteDataSource>()) {
+    instance.registerLazySingleton<ProductDetailsRemoteDataSource>(
+      () => ProductDetailsRemoteDataSourceImplementation(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ProductDetailsRepository>()) {
+    instance.registerLazySingleton<ProductDetailsRepository>(
+      () => ProductDetailsRepositoryImplementation(
+        data: instance(),
+        networkInfo: instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ProductDetailsUseCaseImplementation>()) {
+    instance.registerLazySingleton<ProductDetailsUseCaseImplementation>(
+      () => ProductDetailsUseCaseImplementation(
+        instance(),
+      ),
+    );
+  }
+}
+
+disposeProductDetails() {}
