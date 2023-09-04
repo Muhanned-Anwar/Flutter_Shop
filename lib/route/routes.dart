@@ -37,7 +37,8 @@ class RouteGenerator {
       case Routes.homeView:
         initHome();
         return MaterialPageRoute(builder: (_) => const HomeView());
-        case Routes.itemDetails:
+      case Routes.itemDetails:
+        initProductDetails();
         return MaterialPageRoute(builder: (_) => const ItemDetails());
       default:
         return unDefineRoute();
