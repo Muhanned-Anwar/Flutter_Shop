@@ -16,6 +16,16 @@ extension NonNullInt on int? {
   }
 }
 
+extension NonNullLocale on String? {
+  String pareWithDefaultLocale() {
+    if (this == null) {
+      return 'ar';
+    } else {
+      return this!;
+    }
+  }
+}
+
 extension NonNullDouble on double? {
   double onNull() {
     if (this == null) {

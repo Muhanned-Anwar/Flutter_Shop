@@ -38,5 +38,10 @@
   "productDetails": "تفاصيل المنتج",
   "spray": "spray",
   "error": "خطا",
-  "ok": "حسنا"
+  "ok": "حسنا",
+  "quantity": "الكمية",
+  "description": "الوصف",
+  "notifications": "الاشعارات",
+  "profile": "الملف الشخصي",
+  "language": "اللغة"
 }
