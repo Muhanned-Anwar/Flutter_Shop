@@ -84,4 +84,14 @@ class ManagerStrings {
   static String get error => tr('error');
 
   static String get ok => tr('ok');
+
+  static String get quantity => tr('quantity');
+
+  static String get description => tr('description');
+
+  static String get notifications => tr('notifications');
+
+  static String get profile => tr('profile');
+
+  static String get language => tr('language');
 }

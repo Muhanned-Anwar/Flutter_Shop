@@ -37,5 +37,10 @@
   "discounted": "Discounted",
   "spray": "spray",
   "error": "Error",
-  "ok": "Ok"
+  "ok": "Ok",
+  "quantity": "Quantity",
+  "description": "Description",
+  "notifications": "Notifications",
+  "profile": "Profile",
+  "language": "Language"
 }

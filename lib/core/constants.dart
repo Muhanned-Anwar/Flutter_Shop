@@ -32,6 +32,7 @@ class KeyConstants {
   static const String userAvatar = '${user}avatar';
   static const String userAvatarOriginal = '${user}avatar_original';
   static const String userPhone = '${user}phone';
+  static const String prefKeyLocale = 'locale_key';
 }
 
 class ApiRequest {
