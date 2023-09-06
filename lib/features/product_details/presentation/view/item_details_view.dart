@@ -4,10 +4,14 @@ import 'package:avatar_course2_5_shop/core/resources/manager_font_sizes.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_font_weight.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_height.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_icon_sizes.dart';
+import 'package:avatar_course2_5_shop/core/resources/manager_raduis.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_strings.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_text_styles.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
+import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
+import 'package:avatar_course2_5_shop/features/product_details/domain/model/product_details_data_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../core/widgets/page_view_indicator.dart';
 import '../../../home/presentation/model/review.dart';
 
@@ -116,205 +120,185 @@ class _ItemDetailsState extends State<ItemDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-            size: 34,
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          ManagerStrings.productDetails,
-          style: getMediumTextStyle(
-            fontSize: ManagerFontSizes.s18,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: ListView(
-        children: [
-          SizedBox(
-            width: ManagerWidth.w320,
-            height: ManagerHeight.h310,
-            child: Stack(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: PageView(
-                    controller: _pageController,
-                    onPageChanged: (int index) {
-                      setState(() {
-                        currentPageIndex = index;
-                      });
-                    },
-                    children: [
-                      Image.asset(
-                        ManagerAssets.product,
-                        fit: BoxFit.fill,
-                      ),
-                      Image.asset(
-                        ManagerAssets.product,
-                        fit: BoxFit.fill,
-                      ),
-                      Image.asset(
-                        ManagerAssets.product,
-                        fit: BoxFit.fill,
-                      ),
-                      Image.asset(
-                        ManagerAssets.product,
-                        fit: BoxFit.fill,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                          right: ManagerWidth.w16,
-                          top: ManagerHeight.h6,
-                        ),
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isFavorite = !isFavorite;
-                            });
-                          },
-                          icon: isFavorite
-                              ? Icon(
-                                  Icons.favorite,
-                                  color: Colors.white.withOpacity(0.5),
-                                  size: ManagerIconSizes.s36,
-                                )
-                              : const Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                  size: ManagerIconSizes.s36,
-                                ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          bottom: ManagerHeight.h12,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            PageViewIndicator(
-                              selected: currentPageIndex == 0,
-                              color: Colors.white,
-                              elseColor: Colors.white.withOpacity(0.6),
-                            ),
-                            SizedBox(
-                              width: ManagerWidth.w8,
-                            ),
-                            PageViewIndicator(
-                              selected: currentPageIndex == 1,
-                              color: Colors.white,
-                              elseColor: Colors.white.withOpacity(0.6),
-                            ),
-                            SizedBox(
-                              width: ManagerWidth.w8,
-                            ),
-                            PageViewIndicator(
-                              selected: currentPageIndex == 2,
-                              color: Colors.white,
-                              elseColor: Colors.white.withOpacity(0.6),
-                            ),
-                            SizedBox(
-                              width: ManagerWidth.w8,
-                            ),
-                            PageViewIndicator(
-                              selected: currentPageIndex == 3,
-                              color: Colors.white,
-                              elseColor: Colors.white.withOpacity(0.6),
-                            ),
-                            SizedBox(
-                              width: ManagerWidth.w8,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
+    return GetBuilder<HomeController>(builder: (controller) {
+      return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+              size: 34,
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: SizedBox(
-                  height: 57,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          isDetails ? Colors.transparent : Colors.grey.shade300,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isDetails = true;
-                        isReviews = false;
-                      });
-                    },
-                    child: Text(
-                      'DETAILS',
-                      style: getBoldTextStyle(),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            ManagerStrings.productDetails,
+            style: getMediumTextStyle(
+              fontSize: ManagerFontSizes.s18,
+            ),
+          ),
+          centerTitle: true,
+        ),
+        body: ListView(
+          children: [
+            SizedBox(
+              width: ManagerWidth.w320,
+              height: ManagerHeight.h310,
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: PageView(
+                      controller: _pageController,
+                      onPageChanged: (int index) {
+                        setState(() {
+                          currentPageIndex = index;
+                        });
+                      },
+                      children: [
+                        ...List.generate(
+                          controller
+                              .productDetailsModel.data.first.photos.length,
+                          (index) => Image.network(
+                            controller.productDetailsModel.data.first
+                                .photos[index].path,
+                            fit: BoxFit.fill,
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                            right: ManagerWidth.w16,
+                            top: ManagerHeight.h6,
+                          ),
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isFavorite = !isFavorite;
+                              });
+                            },
+                            icon: isFavorite
+                                ? Icon(
+                                    Icons.favorite,
+                                    color: Colors.white.withOpacity(0.5),
+                                    size: ManagerIconSizes.s36,
+                                  )
+                                : const Icon(
+                                    Icons.favorite,
+                                    color: Colors.red,
+                                    size: ManagerIconSizes.s36,
+                                  ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            bottom: ManagerHeight.h12,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ...List.generate(
+                                controller.productDetailsModel.data.first.photos
+                                    .length,
+                                (index) => Row(
+                                  children: [
+                                    PageViewIndicator(
+                                      selected: currentPageIndex == 0,
+                                      color: Colors.white,
+                                      elseColor: Colors.white.withOpacity(0.6),
+                                    ),
+                                    SizedBox(
+                                      width: ManagerWidth.w8,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: SizedBox(
-                  height: 57,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: isReviews
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 57,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isDetails
                             ? Colors.transparent
                             : Colors.grey.shade300,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.grey.shade300))),
-                    onPressed: () {
-                      setState(() {
-                        isDetails = false;
-                        isReviews = true;
-                      });
-                    },
-                    child: Text(
-                      'REVIEWS',
-                      style: getBoldTextStyle(),
+                          side: BorderSide(
+                            color: Colors.grey.shade300,
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isDetails = true;
+                          isReviews = false;
+                        });
+                      },
+                      child: Text(
+                        'DETAILS',
+                        style: getBoldTextStyle(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Visibility(
-            visible: isDetails,
-            replacement: buildContainerReviews(),
-            child: buildContainerDetails(),
-          )
-        ],
-      ),
-    );
+                Expanded(
+                  child: SizedBox(
+                    height: 57,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: isReviews
+                              ? Colors.transparent
+                              : Colors.grey.shade300,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.grey.shade300))),
+                      onPressed: () {
+                        setState(() {
+                          isDetails = false;
+                          isReviews = true;
+                        });
+                      },
+                      child: Text(
+                        'REVIEWS',
+                        style: getBoldTextStyle(),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Visibility(
+              visible: isDetails,
+              replacement: buildContainerReviews(),
+              child: buildContainerDetails(controller),
+            )
+          ],
+        ),
+      );
+    });
   }
 
   Container buildContainerReviews() {
@@ -475,7 +459,8 @@ class _ItemDetailsState extends State<ItemDetails> {
     );
   }
 
-  Container buildContainerDetails() {
+  Container buildContainerDetails(HomeController controller) {
+    ProductDetailsDataModel item = controller.productDetailsModel.data.first;
     return Container(
       margin: EdgeInsets.only(
         left: ManagerWidth.w30,
@@ -494,7 +479,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ManagerStrings.spray,
+                      item.name,
                       style: getTextStyle(
                         fontSize: ManagerFontSizes.s20,
                         fontWeight: ManagerFontWeight.w600,
@@ -515,27 +500,19 @@ class _ItemDetailsState extends State<ItemDetails> {
                             color: Colors.yellow.shade800,
                             size: 16,
                           ),
-                          const Text(
-                            '(5.0) ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Text(
-                            '26 orders',
-                            style: TextStyle(fontSize: 12),
+                          Text(
+                            '(${item.rating.toString()}) ',
+                            style: getBoldTextStyle(),
                           ),
                         ],
                       ),
                     )
                   ],
                 ),
-                const Text(
-                  '\$5.35',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
+                Text(
+                  item.mainPrice,
+                  style: getBoldTextStyle(
+                      fontSize: ManagerFontSizes.s18, color: Colors.grey),
                 )
               ],
             ),
@@ -545,27 +522,26 @@ class _ItemDetailsState extends State<ItemDetails> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Quantity',
-                  style: TextStyle(
+                Text(
+                  ManagerStrings.quantity,
+                  style: getBoldTextStyle(
                     color: Colors.deepOrangeAccent,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontSize: ManagerFontSizes.s14,
                   ),
                 ),
                 Container(
-                  height: 32,
-                  width: 110,
-                  padding: const EdgeInsets.only(
-                    top: 6,
-                    bottom: 5,
-                    // left: 8,
-                    // right: 7,
+                  height: ManagerHeight.h32,
+                  width: ManagerWidth.w110,
+                  padding: EdgeInsets.only(
+                    top: ManagerHeight.h6,
+                    bottom: ManagerHeight.h6,
                   ),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(
+                      ManagerRadius.r16,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -612,25 +588,25 @@ class _ItemDetailsState extends State<ItemDetails> {
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
-            'Description ',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
+           Text(
+            ManagerStrings.description,
+            style: getBoldTextStyle(
+              fontSize: ManagerFontSizes.s14,
             ),
           ),
-          const SizedBox(height: 11),
-          const SizedBox(
-            width: 330,
-            height: 65,
-            child: Text(
-              'Exercitationem neque aut architecto eum. '
-              'Ea blanditiis aliquid odit ipsa. Alias qui minus quia similique voluptas'
-              ' sit doloremque. Harum eaque officia reiciendis '
-              'sit beatae voluptatem. Inventore sequi expedita maiores aliquid et pariatur.',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 14,
+           SizedBox(height: ManagerHeight.h12),
+           SizedBox(
+            width: ManagerWidth.w320,
+            height: ManagerHeight.h60,
+            child:  SingleChildScrollView(
+              child: Text(
+                item.description,
+                style: getRegularTextStyle(
+                  color: Colors.grey,
+                  fontSize: ManagerFontSizes.s14,
+                ),
+                // overflow: TextOverflow.ellipsis,
+                // maxLines: 3,
               ),
             ),
           ),
