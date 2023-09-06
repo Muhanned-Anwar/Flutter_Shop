@@ -36,148 +36,155 @@ class HomeView extends StatelessWidget {
             builder: (controller) {
               return Stack(
                 children: [
-                  ListView(
-                    children: [
-                      SizedBox(height: ManagerHeight.h56),
-                      Column(
-                        children: [
-                          categoriesList(controller),
-                          SizedBox(height: ManagerHeight.h20),
-                          sectionTitle(),
-                          Container(
-                            height: ManagerHeight.h320,
-                            width: ManagerWidth.w300,
-                            alignment: Alignment.center,
-                            margin: EdgeInsetsDirectional.only(
-                              end: ManagerWidth.w12,
-                            ),
-                            child: GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: controller.bestItemsCard(
-                                controller.homeModel.data.length,
+                  RefreshIndicator(
+                    onRefresh: () async {
+                      controller.readHome();
+                    },
+                    color: ManagerColors.primaryColor,
+                    backgroundColor: ManagerColors.white,
+                    child: ListView(
+                      children: [
+                        SizedBox(height: ManagerHeight.h56),
+                        Column(
+                          children: [
+                            categoriesList(controller),
+                            SizedBox(height: ManagerHeight.h20),
+                            sectionTitle(),
+                            Container(
+                              height: ManagerHeight.h320,
+                              width: ManagerWidth.w300,
+                              alignment: Alignment.center,
+                              margin: EdgeInsetsDirectional.only(
+                                end: ManagerWidth.w12,
                               ),
-                              itemBuilder: (BuildContext context, int index) {
-                                HomeDataModel homeDataModel =
-                                    controller.homeModel.data[index];
-                                return InkWell(
-                                  onTap: () {
-                                    controller.productDetails(context, homeDataModel.id);
-                                  },
-                                  child: LayoutBuilder(
-                                    builder: (
-                                      BuildContext context,
-                                      BoxConstraints constraints,
-                                    ) {
-                                      return Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            flex: 5,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                ManagerRadius.r10,
-                                              ),
-                                              child: controller.image(
-                                                courseAvatar: homeDataModel
-                                                    .thumbnailImage
-                                                    .toString(),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  homeDataModel.name,
-                                                  style: getMediumTextStyle(),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 1,
-                                                ),
-                                                Text(
-                                                  controller.productPrice(
-                                                    homeDataModel.basePrice
-                                                        .toString(),
-                                                      homeDataModel.unit
-                                                  ),
-                                                  style: getMediumTextStyle(
-                                                    fontSize:
-                                                        ManagerFontSizes.s12,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      );
+                              child: GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: controller.bestItemsCard(
+                                  controller.homeModel.data.length,
+                                ),
+                                itemBuilder: (BuildContext context, int index) {
+                                  HomeDataModel homeDataModel =
+                                      controller.homeModel.data[index];
+                                  return InkWell(
+                                    onTap: () {
+                                      controller.productDetails(context, homeDataModel.id);
                                     },
-                                  ),
-                                );
-                              },
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: ManagerWidth.w10,
-                                mainAxisSpacing: ManagerHeight.h10,
+                                    child: LayoutBuilder(
+                                      builder: (
+                                        BuildContext context,
+                                        BoxConstraints constraints,
+                                      ) {
+                                        return Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              flex: 5,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  ManagerRadius.r10,
+                                                ),
+                                                child: controller.image(
+                                                  courseAvatar: homeDataModel
+                                                      .thumbnailImage
+                                                      .toString(),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 2,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    homeDataModel.name,
+                                                    style: getMediumTextStyle(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                  ),
+                                                  Text(
+                                                    controller.productPrice(
+                                                      homeDataModel.basePrice
+                                                          .toString(),
+                                                        homeDataModel.unit
+                                                    ),
+                                                    style: getMediumTextStyle(
+                                                      fontSize:
+                                                          ManagerFontSizes.s12,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: ManagerWidth.w10,
+                                  mainAxisSpacing: ManagerHeight.h10,
+                                ),
                               ),
                             ),
-                          ),
 
-                          // Features Items In GridView
-                          sectionTitle(
-                            title: ManagerStrings.features,
-                          ),
-                          Container(
-                            height: ManagerHeight.h210,
-                            margin: const EdgeInsets.only(left: 20),
-                            child: GridView.builder(
-                              scrollDirection: Axis.horizontal,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                mainAxisSpacing: 0,
-                                childAspectRatio: 1.35,
-                              ),
-                              itemBuilder: (context, index) {
-                                HomeDataModel item =
-                                    controller.featuredProducts[index];
-                                return ProductCardItem(item: item);
-                              },
-                              itemCount: controller.featuredProducts.length,
+                            // Features Items In GridView
+                            sectionTitle(
+                              title: ManagerStrings.features,
                             ),
-                          ),
+                            Container(
+                              height: ManagerHeight.h210,
+                              margin: const EdgeInsets.only(left: 20),
+                              child: GridView.builder(
+                                scrollDirection: Axis.horizontal,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 1,
+                                  mainAxisSpacing: 0,
+                                  childAspectRatio: 1.35,
+                                ),
+                                itemBuilder: (context, index) {
+                                  HomeDataModel item =
+                                      controller.featuredProducts[index];
+                                  return ProductCardItem(item: item);
+                                },
+                                itemCount: controller.featuredProducts.length,
+                              ),
+                            ),
 
-                          // Discounted Items In GridView
-                          sectionTitle(
-                            title: ManagerStrings.discounted,
-                          ),
-                          Container(
-                            height: ManagerHeight.h210,
-                            margin: const EdgeInsets.only(left: 20),
-                            child: GridView.builder(
-                              scrollDirection: Axis.horizontal,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                mainAxisSpacing: 0,
-                                childAspectRatio: 1.35,
-                              ),
-                              itemBuilder: (context, index) {
-                                HomeDataModel item =
-                                    controller.discountedProducts[index];
-                                return ProductCardItem(item: item);
-                              },
-                              itemCount: controller.discountedProducts.length,
+                            // Discounted Items In GridView
+                            sectionTitle(
+                              title: ManagerStrings.discounted,
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Container(
+                              height: ManagerHeight.h210,
+                              margin: const EdgeInsets.only(left: 20),
+                              child: GridView.builder(
+                                scrollDirection: Axis.horizontal,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 1,
+                                  mainAxisSpacing: 0,
+                                  childAspectRatio: 1.35,
+                                ),
+                                itemBuilder: (context, index) {
+                                  HomeDataModel item =
+                                      controller.discountedProducts[index];
+                                  return ProductCardItem(item: item);
+                                },
+                                itemCount: controller.discountedProducts.length,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
                     decoration: BoxDecoration(
