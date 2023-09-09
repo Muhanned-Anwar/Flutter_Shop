@@ -51,6 +51,9 @@ dependencies:
   dartz: ^0.10.1
   flutter_state_render_dialog: ^1.0.5
   dropdown_button2: ^2.3.9
+  firebase_core: ^2.15.1
+  firebase_messaging: ^14.6.7
+  flutter_local_notifications: ^15.1.1
 
 dev_dependencies:
   flutter_test:
