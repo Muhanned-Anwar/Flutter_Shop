@@ -2,12 +2,15 @@ import 'package:avatar_course2_5_shop/core/internet_checker/internet_checker.dar
 import 'package:avatar_course2_5_shop/core/network/api/app_api.dart';
 import 'package:avatar_course2_5_shop/core/network/api/dio_factory.dart';
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
+import 'package:avatar_course2_5_shop/core/storage/remote/firebase/controllers/fb_notifications.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
 import 'package:avatar_course2_5_shop/features/product_details/data/data_source/remote_data_source.dart';
 import 'package:avatar_course2_5_shop/features/product_details/domain/repository/product_dertails_repository.dart';
 import 'package:avatar_course2_5_shop/features/product_details/domain/use_case/product_details_use_case.dart';
 import 'package:avatar_course2_5_shop/features/settings/presentation/controller/locale_notifier_controller.dart';
+import 'package:avatar_course2_5_shop/firebase_options.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -17,8 +20,20 @@ import '../features/splash/presentation/controller/splash_controller.dart';
 
 final instance = GetIt.instance;
 
+initFirebase() async{
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform
+  );
+
+  final fbNotifications = FbNotifications();
+  await fbNotifications.requestNotificationPermissions();
+  await fbNotifications.initializeForegroundNotificationForAndroid();
+  FbNotifications.initNotifications();
+}
+
 initModule() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initFirebase();
   await AppSettingsSharedPreferences().initPreferences();
 
   if (!GetIt.I.isRegistered<NetworkInfo>()) {

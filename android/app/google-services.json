@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1083493183172",
+    "project_id": "shop-vc2",
+    "storage_bucket": "shop-vc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083493183172:android:298aba4f92fb9ef5f16391",
+        "android_client_info": {
+          "package_name": "com.example.avatar_course2_5_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0hssGa2ZEByQkpQO-zSeldRfV7XufxAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

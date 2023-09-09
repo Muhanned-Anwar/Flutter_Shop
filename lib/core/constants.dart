@@ -13,6 +13,11 @@ class Constants {
   static const double dividerThickness = 0.7;
   static const double dividerIndentDefault = 1;
   static const double dividerEndIndentDefault = 1;
+  static const String notificationChannel = 'App_Name_Notifications_channel';
+  static const String notificationChannelName = 'AppName Notifications Channel';
+  static const String notificationChannelDescription =
+      'This channel will receive notifications specific to the app';
+  static const String notificationIconName = 'launch_background';
 }
 
 class KeyConstants {
