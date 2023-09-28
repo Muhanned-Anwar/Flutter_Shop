@@ -1,8 +1,10 @@
 import 'package:avatar_course2_5_shop/core/extension/extensions.dart';
 import 'package:avatar_course2_5_shop/core/resources/manager_colors.dart';
+import 'package:avatar_course2_5_shop/core/storage/remote/firebase/controllers/fb_auth_controller.dart';
 import 'package:avatar_course2_5_shop/features/auth/data/data_source/auth_api_controller.dart';
 import 'package:avatar_course2_5_shop/route/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
 import '../../../../core/widgets/helpers.dart';
 
@@ -20,13 +22,14 @@ class AuthController extends GetxController with Helpers {
   String? phoneError;
   bool showPassword = true;
   bool showConfirmPassword = true;
+  FbAuthController fbAuthController = FbAuthController();
 
-  changePasswordVisibility(){
+  changePasswordVisibility() {
     showPassword = !showPassword;
     update();
   }
 
-  changeConfirmPasswordVisibility(){
+  changeConfirmPasswordVisibility() {
     showConfirmPassword = !showConfirmPassword;
     update();
   }
@@ -62,26 +65,45 @@ class AuthController extends GetxController with Helpers {
   performLogin(BuildContext context) async {
     resetErrors();
     if (checkData(context)) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return Center(
-              child: CircularProgressIndicator(
-                color: ManagerColors.primaryColor,
-                backgroundColor: ManagerColors.white,
-              ),
-            );
-          });
-      if (await apiController.login(
+      dialogRender(
+        context: context,
+        stateRenderType: StateRenderType.popUpLoadingState,
+        message: 'Loading',
+        title: '',
+      );
+      // if (await apiController.login(
+      //   email: emailTextEditingController.text.toString(),
+      //   password: passwordTextEditingController.text.toString(),
+      //   context: context,
+      // )) {
+      //   showSnackBar(context: context, message: 'Login Successfully');
+      //   Get.back();
+      //   Get.offAllNamed(Routes.homeView);
+      // }
+
+      if (await fbAuthController.signIn(
         email: emailTextEditingController.text.toString(),
         password: passwordTextEditingController.text.toString(),
         context: context,
       )) {
-        showSnackBar(context: context, message: 'Login Successfully');
+        Get.back();
+        dialogRender(
+          context: Get.context!,
+          stateRenderType: StateRenderType.popUpSuccessState,
+          message: 'Login Successfully',
+          title: '',
+        );
         Get.back();
         Get.offAllNamed(Routes.homeView);
       }
       Get.back();
+    } else {
+      dialogRender(
+        context: context,
+        stateRenderType: StateRenderType.popUpErrorState,
+        message: 'Login Failed',
+        title: '',
+      );
     }
     update();
   }
@@ -89,25 +111,40 @@ class AuthController extends GetxController with Helpers {
   performRegister(BuildContext context) async {
     resetErrors();
     if (checkRegisterData(context)) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return Center(
-              child: CircularProgressIndicator(
-                color: ManagerColors.primaryColor,
-                backgroundColor: ManagerColors.white,
-              ),
-            );
-          });
-      if (await apiController.register(
+      dialogRender(
+        context: context,
+        stateRenderType: StateRenderType.popUpLoadingState,
+        message: 'message',
+        title: '',
+      );
+      // if (await apiController.register(
+      //   email: emailTextEditingController.text.toString(),
+      //   password: passwordTextEditingController.text.toString(),
+      //   context: context,
+      //   name: userNameTextEditingController.text.toString(),
+      //   confirmPassword: confirmPasswordTextEditingController.text.toString(),
+      //   phone: phoneTextEditingController.text.toString(),
+      // )) {
+      //   showSnackBar(context: context, message: 'Register Successfully');
+      //   Get.back();
+      //   Get.offAllNamed(Routes.loginView);
+      // }
+
+      bool create = await fbAuthController.createAccount(
         email: emailTextEditingController.text.toString(),
         password: passwordTextEditingController.text.toString(),
         context: context,
         name: userNameTextEditingController.text.toString(),
-        confirmPassword: confirmPasswordTextEditingController.text.toString(),
-        phone: phoneTextEditingController.text.toString(),
-      )) {
-        showSnackBar(context: context, message: 'Register Successfully');
+      );
+
+      if (create) {
+        Get.back();
+        dialogRender(
+          context: context,
+          stateRenderType: StateRenderType.popUpSuccessState,
+          message: 'success',
+          title: '',
+        );
         Get.back();
         Get.offAllNamed(Routes.loginView);
       }

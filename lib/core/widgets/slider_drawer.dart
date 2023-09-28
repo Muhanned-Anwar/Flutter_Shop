@@ -7,8 +7,12 @@ import 'package:avatar_course2_5_shop/core/resources/manager_width.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
 import 'package:avatar_course2_5_shop/route/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
 import 'package:slide_drawer/slide_drawer.dart';
+
+import '../storage/local/database/shared_preferences/user_preference_controller.dart';
+import '../storage/remote/firebase/controllers/fb_auth_controller.dart';
 
 class SliderDrawer extends StatelessWidget {
   const SliderDrawer({Key? key}) : super(key: key);
@@ -127,6 +131,13 @@ class SliderDrawer extends StatelessWidget {
                     icon: Icons.question_mark,
                     title: 'About',
                     onPressed: () {},
+                  ),
+                  drawerItem(
+                    icon: Icons.logout,
+                    title: 'Logout',
+                    onPressed: () {
+                      controller.performLogout();
+                    },
                   ),
                 ],
               ),

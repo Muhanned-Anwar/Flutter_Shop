@@ -2,6 +2,7 @@ import 'package:avatar_course2_5_shop/core/internet_checker/internet_checker.dar
 import 'package:avatar_course2_5_shop/core/network/api/app_api.dart';
 import 'package:avatar_course2_5_shop/core/network/api/dio_factory.dart';
 import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/app_settings_shared_preferences.dart';
+import 'package:avatar_course2_5_shop/core/storage/local/database/shared_preferences/user_preference_controller.dart';
 import 'package:avatar_course2_5_shop/core/storage/remote/firebase/controllers/fb_notifications.dart';
 import 'package:avatar_course2_5_shop/features/home/presentation/controller/home_controller.dart';
 import 'package:avatar_course2_5_shop/features/product_details/data/data_source/remote_data_source.dart';
@@ -35,6 +36,7 @@ initModule() async {
   WidgetsFlutterBinding.ensureInitialized();
   initFirebase();
   await AppSettingsSharedPreferences().initPreferences();
+  await UserPreferenceController().initSharedPreferences();
 
   if (!GetIt.I.isRegistered<NetworkInfo>()) {
     instance.registerLazySingleton<NetworkInfo>(

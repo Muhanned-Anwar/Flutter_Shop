@@ -12,6 +12,8 @@ import '../../../../core/constants.dart';
 import '../../../../core/resources/manager_assets.dart';
 import '../../../../core/resources/manager_height.dart';
 import '../../../../core/resources/manager_width.dart';
+import '../../../../core/storage/local/database/shared_preferences/user_preference_controller.dart';
+import '../../../../core/storage/remote/firebase/controllers/fb_auth_controller.dart';
 import '../model/category_model.dart';
 
 class HomeController extends GetxController {
@@ -101,5 +103,35 @@ class HomeController extends GetxController {
   productDetails(BuildContext context, int productId) {
     readProductDetails(productId);
     Navigator.pushNamed(context, Routes.itemDetails);
+  }
+
+  performLogout() {
+    BuildContext context = Get.context!;
+
+    FbAuthController().signOut(context: context);
+    if (!FbAuthController().loggedIn()) {
+      UserPreferenceController().logout();
+      dialogRender(
+        context: context,
+        stateRenderType: StateRenderType.popUpSuccessState,
+        message: 'Success',
+        title: '',
+        retryAction: () {
+        },
+      );
+      Get.back();
+
+      Get.offAllNamed(Routes.authenticationView);
+    } else {
+      dialogRender(
+        context: context,
+        stateRenderType: StateRenderType.popUpErrorState,
+        message: 'Error',
+        title: '',
+        retryAction: () {
+          Get.back();
+        },
+      );
+    }
   }
 }
